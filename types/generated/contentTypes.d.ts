@@ -603,6 +603,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     featureBoxes: Schema.Attribute.Component<'elements.icon-feature', true>;
     features: Schema.Attribute.Component<'shared.feature-item', true>;
     featuresHeading: Schema.Attribute.String;
+    heroGradient: Schema.Attribute.String;
     heroTheme: Schema.Attribute.Enumeration<['light', 'dark']> &
       Schema.Attribute.DefaultTo<'light'>;
     introHeading: Schema.Attribute.String;

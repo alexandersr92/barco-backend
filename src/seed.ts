@@ -4,7 +4,86 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 4;
+const SEED_VERSION = 5;
+
+// Migración v5: colores de hero configurables por tarjeta + imágenes y
+// contenido específico de Clásica y Gold (diseños 524:887 / 524:1327).
+async function migrateV5(strapi: Core.Strapi) {
+  const media = await uploadAssets(strapi, ['tarjeta-clasica.png', 'tarjeta-gold.png']);
+
+  const cardFaqs = (nombre: string) => [
+    {
+      question: `¿Cuántos puntos acumulo por cada dólar o córdobas en mi Tarjeta de Crédito ${nombre}?`,
+      answer:
+        'La acumulación depende del plan de recompensas elegido; consultá la tabla de recompensas de tu tarjeta.',
+    },
+    {
+      question: `¿Cuántos puntos Avanz puedo acumular al mes con mi Tarjeta de Crédito ${nombre}?`,
+      answer: 'No existe límite de acumulación mensual de puntos Avanz.',
+    },
+    {
+      question: `¿Cuáles son los comercios donde puedo acumular doble puntos Avanz en mi tarjeta ${nombre.toLowerCase()}?`,
+      answer:
+        'Podés elegir las categorías de comercios donde realizás tus compras mensuales habituales.',
+    },
+    {
+      question: '¿Cuántos Cash Back acumulo en mi Tarjeta de Crédito?',
+      answer:
+        'Depende del plan elegido: consultá los porcentajes de Cash Back en la tabla de recompensas.',
+    },
+    {
+      question:
+        '¿Cuáles son los requisitos para efectuar el canje de mis puntos Avanz o de mi CashBack?',
+      answer:
+        'Podés canjear desde Avanz App, llamando a nuestra sucursal telefónica 2223-7676 opción 4 o en nuestros cajeros automáticos Avanz.',
+    },
+  ];
+
+  const cardDocsV5 = [
+    'Reglamento Programa Puntos',
+    'Reglamento Programa Cash Back',
+    'Contrato de Tarjeta de Crédito',
+    'Tabla de costos',
+    'Guía para el cálculo de intereses',
+    'Preguntas Frecuentes',
+    'Guía de gestiones en e-banking',
+    'Seguros relacionados a Tarjeta de Crédito',
+  ].map((label) => ({ label, url: '#' }));
+
+  const updates: Record<string, any> = {
+    'tarjeta-de-credito-signature': {
+      heroGradient: 'linear-gradient(90deg, #272727 0%, #808080 100%)',
+    },
+    'tarjeta-de-credito-clasica': {
+      heroGradient:
+        'linear-gradient(90deg, #2e3a7f 0%, #30b5e4 80.9%, #0091d0 100%)',
+      cardImage: media['tarjeta-clasica.png']?.id,
+      shortDescription: 'Para vos que buscas algo diferente, porque somos distintos',
+      faqs: cardFaqs('Clásica'),
+      documents: cardDocsV5,
+    },
+    'tarjeta-de-credito-gold': {
+      heroGradient:
+        'linear-gradient(90deg, #c69627 0%, #f4c82e 52.6%, #e3ba25 79.9%, #d7b01f 100%)',
+      cardImage: media['tarjeta-gold.png']?.id,
+      shortDescription: 'Para vos que buscas algo diferente, porque somos distintos',
+      faqs: cardFaqs('Gold'),
+      documents: cardDocsV5,
+    },
+  };
+
+  for (const [slug, data] of Object.entries(updates)) {
+    const product = await strapi
+      .documents('api::product.product')
+      .findFirst({ filters: { slug } });
+    if (!product) continue;
+    await strapi.documents('api::product.product').update({
+      documentId: product.documentId,
+      data,
+      status: 'published',
+    });
+  }
+}
 
 export async function seed(strapi: Core.Strapi) {
   const store = strapi.store({ type: 'plugin', name: 'avanz-seed' });
@@ -34,6 +113,12 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v4: template tarjetas de crédito...');
     await migrateV4(strapi);
     strapi.log.info('✅ Migración v4 completada');
+  }
+
+  if (version < 5) {
+    strapi.log.info('🌱 Migración AVANZ v5: colores y contenido por tarjeta...');
+    await migrateV5(strapi);
+    strapi.log.info('✅ Migración v5 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });

@@ -65,6 +65,10 @@
       "enum": ["light", "dark"],
       "default": "light"
     },
+    "heroGradient": {
+      "type": "string",
+      "description": "Gradiente CSS del hero (variante dark), ej: linear-gradient(90deg, #272727, #808080)"
+    },
     "featuresHeading": {
       "type": "string"
     },
