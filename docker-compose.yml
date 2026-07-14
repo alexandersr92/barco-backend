@@ -28,7 +28,8 @@ services:
       # Persiste las imágenes subidas entre redeploys
       - strapi-uploads:/opt/app/public/uploads
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     expose:
       - "1337"
     networks:
@@ -44,6 +45,11 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - strapi-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
     networks:
       - internal
 
