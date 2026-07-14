@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_product_links",
+  "info": {
+    "displayName": "Product Links",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "elements.quick-link",
+      "repeatable": true
+    }
+  }
+}

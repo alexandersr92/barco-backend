@@ -22,7 +22,7 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": ["cuenta", "tarjeta", "credito", "servicio"],
+      "enum": ["cuenta", "tarjeta", "credito", "seguro", "transferencia", "servicio"],
       "required": true
     },
     "audience": {

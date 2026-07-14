@@ -23,6 +23,11 @@
     "date": {
       "type": "date"
     },
+    "category": {
+      "type": "enumeration",
+      "enum": ["educacion-financiera", "corporativo", "tips-de-seguridad"],
+      "default": "corporativo"
+    },
     "excerpt": {
       "type": "text"
     },

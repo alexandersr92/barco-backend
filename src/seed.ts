@@ -2,23 +2,23 @@ import type { Core } from '@strapi/strapi';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Seed inicial con el contenido del diseño de Figma "Avanz Website".
+// Seed v2 con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // Idempotente: solo corre si la base está vacía (no hay productos).
 export async function seed(strapi: Core.Strapi) {
   const existing = await strapi.documents('api::product.product').count({});
   if (existing > 0) return;
 
-  strapi.log.info('🌱 Sembrando contenido inicial AVANZ...');
+  strapi.log.info('🌱 Sembrando contenido AVANZ (v2)...');
 
   const media = await uploadAssets(strapi);
 
-  await seedGlobal(strapi);
+  await seedGlobal(strapi, media);
   await seedProducts(strapi, media);
-  await seedArticles(strapi);
+  await seedArticles(strapi, media);
   await seedPromotions(strapi);
-  await seedHomePage(strapi, media);
+  await seedPages(strapi, media);
 
-  strapi.log.info('✅ Seed AVANZ completado');
+  strapi.log.info('✅ Seed AVANZ v2 completado');
 }
 
 type MediaMap = Record<string, any>;
@@ -62,62 +62,51 @@ async function uploadAssets(strapi: Core.Strapi): Promise<MediaMap> {
   return map;
 }
 
-async function seedGlobal(strapi: Core.Strapi) {
-  const cuentasLinks = [
-    { label: 'Cuenta Corriente', url: '/productos/cuenta-corriente' },
-    { label: 'Cuenta Naranja', url: '/productos/cuenta-naranja' },
-    { label: 'Plan ProAhorro', url: '/productos/cuenta-plan-proahorro' },
-    { label: 'Cuenta MiChanchito', url: '/productos/cuenta-michanchito' },
-    { label: 'Cuenta MiAhorro', url: '/productos/cuenta-miahorro' },
-    { label: 'Cuenta Ahorro Tradicional', url: '/productos/cuenta-ahorro-tradicional' },
-    { label: 'Cuenta ProActiva', url: '/productos/cuenta-proactiva' },
-    { label: 'Depósito a Plazo Fijo', url: '/productos/deposito-a-plazo-fijo' },
-  ];
-
+async function seedGlobal(strapi: Core.Strapi, media: MediaMap) {
   await strapi.documents('api::global.global').create({
     data: {
       siteName: 'Banco Avanz',
+      logo: media['avanz-logo.svg']?.id,
       ebankingUrl: 'https://ebanking.avanzbanc.com',
-      topNav: [
+      usdBuy: 36.1,
+      usdSell: 36.62,
+      audienceNav: [
         { label: 'Personas', url: '/' },
         { label: 'Empresas', url: '/empresas' },
         { label: 'Sobre nosotros', url: '/sobre-nosotros' },
-        { label: 'Noticias', url: '/noticias' },
-        { label: 'Promociones', url: '/promociones' },
       ],
+      topNav: [],
       mainNav: [
-        { label: 'Cuentas', url: '/cuentas', links: cuentasLinks },
         {
-          label: 'Tarjetas',
-          url: '/tarjetas',
+          label: 'Productos',
+          url: '/cuentas',
           links: [
-            { label: 'Tarjeta de Débito', url: '/productos/tarjeta-de-debito' },
-            { label: 'Tarjeta de Crédito Clásica', url: '/productos/tarjeta-de-credito-clasica' },
-            { label: 'Tarjeta de Crédito Gold', url: '/productos/tarjeta-de-credito-gold' },
-            { label: 'Tarjeta de Crédito Signature', url: '/productos/tarjeta-de-credito-signature' },
-          ],
-        },
-        {
-          label: 'Créditos',
-          url: '/creditos',
-          links: [
-            { label: 'Crédito Personal', url: '/productos/credito-personal' },
-            { label: 'Crédito de Vivienda', url: '/productos/credito-de-vivienda' },
-            { label: 'Crédito AutoAvanz', url: '/productos/credito-autoavanz' },
+            { label: 'Cuentas', url: '/cuentas' },
+            { label: 'Tarjetas', url: '/tarjetas' },
+            { label: 'Préstamos', url: '/creditos' },
+            { label: 'Seguros', url: '/seguros' },
+            { label: 'Transferencias', url: '/transferencias' },
+            { label: 'Otros Servicios', url: '/servicios' },
           ],
         },
         { label: 'Canales de atención', url: '/canales-de-atencion', links: [] },
         { label: 'Zona digital', url: '/zona-digital', links: [] },
+        { label: 'Noticias', url: '/noticias', links: [] },
+        { label: 'Promociones', url: '/promociones', links: [] },
+      ],
+      socialLinks: [
+        { name: 'Facebook', url: 'https://www.facebook.com/avanzbanc', icon: media['social-1.svg']?.id },
+        { name: 'Instagram', url: 'https://www.instagram.com/avanzbanc', icon: media['social-2.svg']?.id },
+        { name: 'YouTube', url: 'https://www.youtube.com/@avanzbanc', icon: media['social-3.svg']?.id },
       ],
       footerColumns: [
         {
           title: 'Acerca de avanz',
           links: [
-            { label: '¿Quiénes somos?', url: '/sobre-nosotros' },
+            { label: '¿Quiénes somos?', url: '/quienes-somos' },
             { label: 'Información Regulatoria', url: '/informacion-regulatoria' },
             { label: 'Información Financiera', url: '/informacion-financiera' },
             { label: 'Trabaja con Nosotros', url: '/trabaja-con-nosotros' },
-            { label: 'Contacto', url: '/canales-de-atencion' },
           ],
         },
         {
@@ -362,14 +351,10 @@ async function seedProducts(strapi: Core.Strapi, media: MediaMap) {
         'Seguro personalizado: Elige cualquier compañía de seguros autorizada en el país.',
         'Crédito Back to Back: Obtén hasta el 100% del valor de tu Certificado de Depósito a Plazo Fijo.',
       ]),
-      requirements: f([
-        'Edad entre 21 y 65 años.',
-        'Cédula de identidad.',
-        'Cuenta activa en AVANZ.',
-      ]),
+      requirements: f(['Edad entre 21 y 65 años.', 'Cédula de identidad.', 'Cuenta activa en AVANZ.']),
     },
     {
-      name: 'Crédito de Vivienda',
+      name: 'Crédito para Vivienda',
       slug: 'credito-de-vivienda',
       category: 'credito',
       audience: 'personas',
@@ -391,8 +376,7 @@ async function seedProducts(strapi: Core.Strapi, media: MediaMap) {
       category: 'credito',
       audience: 'personas',
       order: 3,
-      shortDescription:
-        '¡Obtén tu Crédito de Vehículo hoy mismo y maneja tus sueños hacia la realidad!',
+      shortDescription: '¡Obtén tu Crédito de Vehículo hoy mismo y maneja tus sueños hacia la realidad!',
       description:
         '¡Si podés imaginarlo, nosotros podemos financiarlo! Elegí tu carro ideal, financialo con nosotros y conducilo hacia donde querrás. Ponemos a tu disposición asesoramiento personalizado, para que tu trámite sea ágil.',
       benefits: f([
@@ -402,6 +386,145 @@ async function seedProducts(strapi: Core.Strapi, media: MediaMap) {
         'Si no tienes la prima completa, podemos ajustarnos a tus posibilidades y ofrecerte otras garantías.',
         'Realiza tus pagos a través de nuestro e-Banking y App Avanz Móvil.',
       ]),
+    },
+
+    // ——— Seguros Personas ———
+    {
+      name: 'Seguro de Vida sobre tu Saldo Deudor (SVSD)',
+      slug: 'seguro-vida-saldo-deudor',
+      category: 'seguro',
+      audience: 'personas',
+      order: 1,
+      shortDescription:
+        'Protege a tu familia con nuestro Seguro de Vida Saldo Deudor: en caso de fallecimiento, el saldo de tu deuda queda cubierto.',
+    },
+    {
+      name: 'Seguro de Protección Contra Robo y Fraude (PRF)',
+      slug: 'seguro-proteccion-robo-fraude',
+      category: 'seguro',
+      audience: 'personas',
+      order: 2,
+      shortDescription:
+        'Mantén tu tranquilidad con el Seguro de Protección contra Robo y Fraude para tus tarjetas Avanz.',
+    },
+    {
+      name: 'Seguro de Responsabilidad Civil Obligatorio (RCO)',
+      slug: 'seguro-responsabilidad-civil-obligatorio',
+      category: 'seguro',
+      audience: 'personas',
+      order: 3,
+      shortDescription:
+        'Cumple con la ley y protege a terceros con el Seguro de Responsabilidad Civil Obligatorio para tu vehículo.',
+    },
+    {
+      name: 'Seguro Responsabilidad Civil con Matrícula Extranjera (RCE)',
+      slug: 'seguro-responsabilidad-civil-matricula-extranjera',
+      category: 'seguro',
+      audience: 'personas',
+      order: 4,
+      shortDescription:
+        'Seguro de Responsabilidad Civil para vehículos con matrícula extranjera que circulan en el país.',
+    },
+    {
+      name: 'Seguro de Accidentes Personales de Transporte (APT)',
+      slug: 'seguro-accidentes-personales-transporte',
+      category: 'seguro',
+      audience: 'personas',
+      order: 5,
+      shortDescription:
+        'Protección ante accidentes personales de transporte, para viajar con tranquilidad.',
+    },
+
+    // ——— Transferencias Personas ———
+    {
+      name: 'Transferencias entre cuentas AVANZ',
+      slug: 'transferencias-internas',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 1,
+      shortDescription:
+        'Realizá transferencias internas entre cuentas AVANZ al instante y sin costo desde e-Banking o Avanz Móvil.',
+    },
+    {
+      name: 'Transferencias ACH',
+      slug: 'transferencias-ach',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 2,
+      shortDescription:
+        'Enviá dinero a cuentas de otros bancos del país a través de la red ACH, de forma segura y rápida.',
+    },
+    {
+      name: 'Transferencias Interbancarias (TEF)',
+      slug: 'transferencias-interbancarias-tef',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 3,
+      shortDescription: 'Transferencias electrónicas de fondos entre bancos nacionales.',
+    },
+    {
+      name: 'Transferencias Internacionales (Swift)',
+      slug: 'transferencias-internacionales-swift',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 4,
+      shortDescription:
+        'Enviá y recibí dinero desde cualquier parte del mundo a través de la red Swift.',
+    },
+    {
+      name: 'Transferencias AvanzTrans',
+      slug: 'transferencias-avanztrans',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 5,
+      shortDescription: 'Nuestro servicio de transferencias AvanzTrans, rápido y confiable.',
+    },
+    {
+      name: 'Transferencias a otros Bancos (SIP)',
+      slug: 'transferencias-sip',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 6,
+      shortDescription:
+        'Transferencias inmediatas a otros bancos a través del Sistema Interbancario de Pagos (SIP).',
+    },
+    {
+      name: 'Código AVANZ',
+      slug: 'codigo-avanz',
+      category: 'transferencia',
+      audience: 'personas',
+      order: 7,
+      shortDescription:
+        'Retirá y enviá dinero con un código seguro, sin necesidad de tarjeta.',
+    },
+
+    // ——— Otros Servicios Personas ———
+    {
+      name: 'Pago de servicios e impuestos',
+      slug: 'pago-de-servicios-e-impuestos',
+      category: 'servicio',
+      audience: 'personas',
+      order: 1,
+      shortDescription:
+        'Pagá tus servicios básicos e impuestos desde e-Banking, Avanz Móvil o nuestras sucursales.',
+    },
+    {
+      name: 'Mesa de Cambio',
+      slug: 'mesa-de-cambio',
+      category: 'servicio',
+      audience: 'personas',
+      order: 2,
+      shortDescription:
+        'Comprá y vendé divisas con tasas competitivas en nuestra Mesa de Cambio.',
+    },
+    {
+      name: 'Garantías bancarias',
+      slug: 'garantias-bancarias',
+      category: 'servicio',
+      audience: 'personas',
+      order: 3,
+      shortDescription:
+        'Respaldá tus compromisos comerciales con nuestras garantías bancarias.',
     },
 
     // ——— Empresas ———
@@ -449,6 +572,42 @@ async function seedProducts(strapi: Core.Strapi, media: MediaMap) {
         '¡Beneficio especial! Anualidad gratis para el titular y los adicionales durante el primer año.',
       ]),
     },
+    {
+      name: 'Línea de Crédito Empresarial',
+      slug: 'linea-de-credito-empresarial',
+      category: 'credito',
+      audience: 'empresas',
+      order: 1,
+      shortDescription:
+        'Financiamiento revolvente para el capital de trabajo de tu empresa, disponible cuando lo necesités.',
+    },
+    {
+      name: 'Crédito Empresarial',
+      slug: 'credito-empresarial',
+      category: 'credito',
+      audience: 'empresas',
+      order: 2,
+      shortDescription:
+        'Impulsá el crecimiento de tu empresa con financiamiento a la medida de tus proyectos.',
+    },
+    {
+      name: 'Crédito Agropecuario',
+      slug: 'credito-agropecuario',
+      category: 'credito',
+      audience: 'empresas',
+      order: 3,
+      shortDescription:
+        'Financiamiento especializado para el sector agropecuario: siembra, cosecha, ganadería y equipos.',
+    },
+    {
+      name: 'Pago de planilla',
+      slug: 'pago-de-planilla',
+      category: 'servicio',
+      audience: 'empresas',
+      order: 1,
+      shortDescription:
+        'Simplificá el pago de nómina de tu equipo con nuestro servicio de pago de planilla.',
+    },
   ];
 
   for (const product of products) {
@@ -459,34 +618,38 @@ async function seedProducts(strapi: Core.Strapi, media: MediaMap) {
   }
 }
 
-async function seedArticles(strapi: Core.Strapi) {
-  const articles = [
+async function seedArticles(strapi: Core.Strapi, media: MediaMap) {
+  const articles: any[] = [
     {
-      title: 'Banco Avanz presente en Congreso Médico 2023',
-      slug: 'banco-avanz-presente-en-congreso-medico-2023',
-      date: '2023-06-16',
+      title: 'Desentrañando las Modalidades de Fraude Bancario: Protegiéndote en el Mundo Digital',
+      slug: 'desentranando-las-modalidades-de-fraude-bancario',
+      date: '2023-11-17',
+      category: 'tips-de-seguridad',
+      image: media['news-fraude-bancario.jpg']?.id,
       excerpt:
-        'Banco Avanz presente en el Congreso Médico 2023 del Hospital Vivian Pellas. Visitanos este sábado 17 de junio.',
+        'Conoce las modalidades de fraude bancario más comunes y cómo protegerte en el mundo digital.',
       content:
-        'Banco Avanz presente en el Congreso Médico 2023 del Hospital Vivian Pellas. Visitanos este sábado 17 de junio.',
+        'Conoce las modalidades de fraude bancario más comunes y cómo protegerte en el mundo digital. En Avanz trabajamos para mantener tu información siempre segura.',
     },
     {
-      title: 'En Avanz conmemoramos el día de la mujer',
-      slug: 'en-avanz-conmemoramos-el-dia-de-la-mujer',
-      date: '2023-03-08',
+      title: 'Información importante para evitar los fraudes bancarios en línea',
+      slug: 'informacion-importante-para-evitar-los-fraudes-bancarios-en-linea',
+      date: '2023-11-17',
+      category: 'tips-de-seguridad',
       excerpt:
-        'En Avanz conmemoramos el día internacional de la mujer agradeciendo el compromiso de las líderes con resultados.',
+        'Recomendaciones clave para evitar los fraudes bancarios en línea y proteger tus cuentas.',
       content:
-        'En Avanz conmemoramos el día internacional de la mujer agradeciendo el compromiso de las líderes con resultados.',
+        'Recomendaciones clave para evitar los fraudes bancarios en línea y proteger tus cuentas. Nunca compartas tus credenciales y verificá siempre los sitios donde ingresás tus datos.',
     },
     {
-      title: 'Avanz presente en ANDIVA Motorshow 2022',
-      slug: 'avanz-presente-en-andiva-motorshow-2022',
-      date: '2022-11-19',
+      title: 'Banco Avanz innovando con inteligencia artificial',
+      slug: 'banco-avanz-innovando-con-inteligencia-artificial',
+      date: '2023-10-13',
+      category: 'corporativo',
       excerpt:
-        'Somos Avanz y te esperamos en ANDIVA Motorshow 2022 con las mejores condiciones de crédito, preaprobado inmediato.',
+        'Somos Avanz, tu banco fácil: innovamos con inteligencia artificial para servirte mejor.',
       content:
-        'Somos Avanz y te esperamos en ANDIVA Motorshow 2022 con las mejores condiciones de crédito, preaprobado inmediato.',
+        'Somos Avanz, tu banco fácil: innovamos con inteligencia artificial para servirte mejor y llevar tu banco a tus manos.',
     },
   ];
 
@@ -518,7 +681,8 @@ async function seedPromotions(strapi: Core.Strapi) {
   }
 }
 
-async function seedHomePage(strapi: Core.Strapi, media: MediaMap) {
+async function seedPages(strapi: Core.Strapi, media: MediaMap) {
+  // ——— Home (Personas) ———
   await strapi.documents('api::page.page').create({
     data: {
       title: 'Inicio',
@@ -527,40 +691,48 @@ async function seedHomePage(strapi: Core.Strapi, media: MediaMap) {
         {
           __component: 'sections.hero',
           kicker: 'BIENVENIDO A AVANZ',
+          title: 'Tu banco fácil',
+          subtitle: 'Inspirados en la innovación\nponemos tu banco en tus manos',
+          image: media['hero-personas.jpg']?.id,
+          buttons: [],
+        },
+        {
+          __component: 'sections.section-heading',
+          kicker: 'BIENVENIDO A AVANZ',
           title: 'Hola, ¿Qué necesitas hacer hoy?',
           subtitle: 'Ponemos a disposición productos y servicios a tu medida',
-          buttons: [
-            { label: 'Conocé nuestros productos', url: '/cuentas', variant: 'primary' },
+          align: 'center',
+        },
+        {
+          __component: 'sections.product-links',
+          items: [
+            { prefix: 'Aperturar una', label: 'Cuenta', url: '/cuentas', icon: media['ql-icon-cuenta.svg']?.id },
+            { prefix: 'Solicitar una', label: 'Tarjeta', url: '/tarjetas', icon: media['ql-icon-tarjeta.svg']?.id },
+            { prefix: 'Solicitar un', label: 'Crédito', url: '/creditos', icon: media['ql-icon-credito.svg']?.id },
+            { prefix: 'Adquirir un', label: 'Seguro', url: '/seguros', icon: media['ql-icon-seguro.svg']?.id },
           ],
         },
         {
-          __component: 'sections.channels-bar',
-          text: 'Conocé nuestros canales de atención',
-          linkLabel: 'Ver canales',
-          linkUrl: '/canales-de-atencion',
+          __component: 'sections.channels-converter',
+          title: 'Conocé nuestros canales de atención',
+          buttonLabel: 'Conocé más',
+          buttonUrl: '/canales-de-atencion',
+          icon: media['canales-icon.svg']?.id,
         },
         {
-          __component: 'sections.product-showcase',
-          heading: 'Tarjeta de débito',
-          description:
-            'Dispone de los fondos de tu cuenta bancaria en todo momento a través de la Tarjeta de Débito AVANZ',
-          features: [
-            { text: 'Retiro de efectivo las 24 horas, los 365 días del año.' },
-            { text: 'Acceso a cajeros automáticos a nivel nacional e internacional.' },
-            { text: 'Realizar pagos y compras a través POS de comercios afiliados sin intereses ni comisiones.' },
-          ],
-          photo: media['debito-persona.jpg']?.id,
-          cardImage: media['tarjeta-debito-naranja.png']?.id,
-          buttons: [
-            { label: 'Solicitala aqui', url: '/productos/tarjeta-de-debito', variant: 'primary' },
-            { label: 'Ver más detalles', url: '/productos/tarjeta-de-debito', variant: 'link' },
-          ],
-          imageLeft: true,
+          __component: 'sections.section-heading',
+          title: 'Te brindamos las mejores soluciones',
+          align: 'left',
         },
         {
-          __component: 'sections.promotions-list',
-          heading: '¡Entérate de las promociones que Avanz tiene para vos!',
-          limit: 2,
+          __component: 'sections.feature-banner',
+          kicker: 'AVANZÁ TUS FINANZAS',
+          title: 'Aprendé sobre Educación Financiera',
+          description: 'Aprende cómo mejorar tu economía personal y familiar.',
+          buttonLabel: 'Aprendé más',
+          buttonUrl: '/educacion-financiera',
+          illustration: media['edu-illustration.svg']?.id,
+          variant: 'orange',
         },
         {
           __component: 'sections.news-list',
@@ -568,56 +740,165 @@ async function seedHomePage(strapi: Core.Strapi, media: MediaMap) {
           limit: 3,
         },
         {
-          __component: 'sections.app-banner',
-          title: 'Descargá Avanz Móvil',
-          description: 'Realiza transferencias y maneja tus cuentas las 24 horas del día',
-          appStoreUrl: 'https://apps.apple.com',
-          playStoreUrl: 'https://play.google.com',
+          __component: 'sections.feature-banner',
+          kicker: 'TIPS DE SEGURIDAD',
+          title: 'Tu información siempre segura',
+          description: 'Conoce nuestras recomendaciones de seguridad.',
+          buttonLabel: 'Leer más',
+          buttonUrl: '/tips-de-seguridad',
+          illustration: media['tips-illustration.svg']?.id,
+          variant: 'teal',
         },
         {
           __component: 'sections.info-cards',
-          heading: 'Te brindamos las mejores soluciones',
+          heading: '',
           cards: [
-            {
-              kicker: 'AVANZÁ TUS FINANZAS',
-              title: 'Aprendé sobre Educación Financiera',
-              description: 'Aprende cómo mejorar tu economía personal y familiar.',
-              linkLabel: 'Conocé más',
-              linkUrl: '/educacion-financiera',
-            },
-            {
-              kicker: 'TIPS DE SEGURIDAD',
-              title: 'Tu información siempre segura',
-              description: 'Conoce nuestras recomendaciones de seguridad.',
-              linkLabel: 'Leer más',
-              linkUrl: '/tips-de-seguridad',
-            },
             {
               title: 'Bienes en venta',
               description: 'Encuentra los bienes adjudicados que actualmente tenemos en venta.',
-              linkLabel: 'CONOCÉ MÁS',
+              linkLabel: 'Conocé más',
               linkUrl: '/bienes-en-venta',
+              image: media['info-icon-bienes.svg']?.id,
             },
             {
               title: 'Únete a nuestro equipo',
               description: 'Completa nuestro Programa de Aprendizaje Bancario y forma parte de Avanz.',
-              linkLabel: 'CONOCÉ MÁS',
+              linkLabel: 'Conocé más',
               linkUrl: '/trabaja-con-nosotros',
+              image: media['info-icon-equipo.svg']?.id,
             },
             {
               title: 'Información regulatoria',
               description: 'Trabajamos con ética, honestidad y transparencia.',
               linkLabel: 'Conocé más',
               linkUrl: '/informacion-regulatoria',
+              image: media['info-icon-regulatoria.svg']?.id,
             },
           ],
         },
       ],
       seo: {
-        metaTitle: 'Banco Avanz — Hola, ¿Qué necesitas hacer hoy?',
-        metaDescription: 'Ponemos a disposición productos y servicios a tu medida.',
+        metaTitle: 'Banco Avanz — Tu banco fácil',
+        metaDescription: 'Inspirados en la innovación ponemos tu banco en tus manos.',
       },
     },
     status: 'published',
   });
+
+  // ——— Empresas ———
+  await strapi.documents('api::page.page').create({
+    data: {
+      title: 'Empresas',
+      slug: 'empresas',
+      sections: [
+        {
+          __component: 'sections.hero',
+          kicker: 'BIENVENIDO A AVANZ',
+          title: 'Tu socio financiero empresarial',
+          subtitle: 'Consolida todas las necesidades financieras de tu empresa en un solo lugar',
+          image: media['hero-personas.jpg']?.id,
+          buttons: [],
+        },
+        {
+          __component: 'sections.section-heading',
+          title: 'Productos para tu empresa',
+          align: 'center',
+        },
+        { __component: 'sections.product-grid', heading: 'Cuentas', category: 'cuenta', audience: 'empresas' },
+        { __component: 'sections.product-grid', heading: 'Tarjetas', category: 'tarjeta', audience: 'empresas' },
+        { __component: 'sections.product-grid', heading: 'Préstamos', category: 'credito', audience: 'empresas' },
+        { __component: 'sections.product-grid', heading: 'Otros Servicios', category: 'servicio', audience: 'empresas' },
+      ],
+      seo: {
+        metaTitle: 'Empresas | Banco Avanz',
+        metaDescription: 'Soluciones financieras para tu empresa.',
+      },
+    },
+    status: 'published',
+  });
+
+  // ——— Páginas institucionales y de contenido ———
+  const simplePages: {
+    title: string;
+    slug: string;
+    body: string;
+  }[] = [
+    {
+      title: 'Sobre nosotros',
+      slug: 'sobre-nosotros',
+      body: 'Somos Banco Avanz, de Grupo Pellas. Trabajamos con ética, honestidad y transparencia.\n\nConocé más sobre nuestra misión, visión y valores, nuestra transparencia bancaria e información regulatoria.',
+    },
+    {
+      title: '¿Quiénes somos?',
+      slug: 'quienes-somos',
+      body: 'Misión, Visión y Valores de Banco Avanz.\n\nInspirados en la innovación, ponemos tu banco en tus manos. Nuestros líderes trabajan cada día para brindarte productos y servicios a tu medida.',
+    },
+    {
+      title: 'Transparencia Bancaria',
+      slug: 'transparencia-bancaria',
+      body: 'Estados Financieros Auditados, Gestión de Riesgo y Calificación de Riesgo.\n\nPonemos a tu disposición la información financiera de Banco Avanz.',
+    },
+    {
+      title: 'Trabaja con Nosotros',
+      slug: 'trabaja-con-nosotros',
+      body: 'Únete a nuestro equipo. Completa nuestro Programa de Aprendizaje Bancario y forma parte de Avanz.',
+    },
+    {
+      title: 'Información Regulatoria',
+      slug: 'informacion-regulatoria',
+      body: 'Nuestras tarifas, Avanz informa, Regulación tributaria y FOGADE.\n\nTrabajamos con ética, honestidad y transparencia.',
+    },
+    {
+      title: 'Información Financiera',
+      slug: 'informacion-financiera',
+      body: 'Estados financieros auditados y demás información financiera de Banco Avanz.',
+    },
+    {
+      title: 'Soluciones Digitales',
+      slug: 'soluciones-digitales',
+      body: 'Avanz Móvil, e-banking y Avanz Token.\n\nRealiza transferencias y maneja tus cuentas las 24 horas del día desde donde estés.',
+    },
+    {
+      title: 'Canales de atención',
+      slug: 'canales-de-atencion',
+      body: 'Zona Digital, WhatsApp, Sucursal Telefónica, Sucursales, Cajeros automáticos (ATM), PuntoXpress, BancaRed y Punto Fácil.\n\nSucursal telefónica: 2223 7676. Avenida Jean Paul Genie, Edificio Avanz.',
+    },
+    {
+      title: 'Zona Digital',
+      slug: 'zona-digital',
+      body: 'Gestioná tu banco desde cualquier lugar con Avanz Móvil, e-Banking y Avanz Token.',
+    },
+    {
+      title: 'Ayuda',
+      slug: 'ayuda',
+      body: 'Tips de seguridad, Educación financiera y Sugerencias y reclamos.\n\nEstamos para ayudarte: llamá a nuestra sucursal telefónica 2223 7676.',
+    },
+    {
+      title: 'Educación Financiera',
+      slug: 'educacion-financiera',
+      body: 'Aprende cómo mejorar tu economía personal y familiar con nuestros contenidos de educación financiera.',
+    },
+    {
+      title: 'Tips de Seguridad',
+      slug: 'tips-de-seguridad',
+      body: 'Tu información siempre segura. Conoce nuestras recomendaciones de seguridad para proteger tus cuentas y tarjetas.',
+    },
+    {
+      title: 'Bienes en venta',
+      slug: 'bienes-en-venta',
+      body: 'Encuentra los bienes adjudicados que actualmente tenemos en venta.',
+    },
+  ];
+
+  for (const page of simplePages) {
+    await strapi.documents('api::page.page').create({
+      data: {
+        title: page.title,
+        slug: page.slug,
+        sections: [{ __component: 'sections.rich-text', body: page.body }],
+        seo: { metaTitle: `${page.title} | Banco Avanz` },
+      },
+      status: 'published',
+    });
+  }
 }

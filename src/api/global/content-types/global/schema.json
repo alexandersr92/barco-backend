@@ -30,6 +30,24 @@
       "component": "shared.link",
       "repeatable": true
     },
+    "audienceNav": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true
+    },
+    "usdBuy": {
+      "type": "decimal",
+      "default": 36.62
+    },
+    "usdSell": {
+      "type": "decimal",
+      "default": 36.62
+    },
     "ebankingUrl": {
       "type": "string",
       "default": "https://ebanking.avanzbanc.com"

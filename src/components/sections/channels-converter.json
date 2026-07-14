@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_channels_converters",
+  "info": {
+    "displayName": "Channels + Converter",
+    "icon": "exchangeFunds"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Conocé nuestros canales de atención"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Conocé más"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/canales-de-atencion"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

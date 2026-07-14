@@ -453,6 +453,10 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['educacion-financiera', 'corporativo', 'tips-de-seguridad']
+    > &
+      Schema.Attribute.DefaultTo<'corporativo'>;
     content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -488,6 +492,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
   attributes: {
     address: Schema.Attribute.String;
+    audienceNav: Schema.Attribute.Component<'shared.link', true>;
     copyright: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -507,10 +512,13 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     siteName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Banco Avanz'>;
+    socialLinks: Schema.Attribute.Component<'elements.social-link', true>;
     topNav: Schema.Attribute.Component<'shared.link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    usdBuy: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<36.62>;
+    usdSell: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<36.62>;
   };
 }
 
@@ -538,6 +546,10 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.hero',
         'sections.product-showcase',
         'sections.product-grid',
+        'sections.product-links',
+        'sections.channels-converter',
+        'sections.section-heading',
+        'sections.feature-banner',
         'sections.info-cards',
         'sections.news-list',
         'sections.promotions-list',
@@ -573,7 +585,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     benefits: Schema.Attribute.Component<'shared.feature-item', true>;
     cardImage: Schema.Attribute.Media<'images'>;
     category: Schema.Attribute.Enumeration<
-      ['cuenta', 'tarjeta', 'credito', 'servicio']
+      ['cuenta', 'tarjeta', 'credito', 'seguro', 'transferencia', 'servicio']
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;

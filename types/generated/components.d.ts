@@ -16,6 +16,33 @@ export interface ElementsInfoCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsQuickLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_quick_links';
+  info: {
+    displayName: 'Quick Link';
+    icon: 'cursor';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    prefix: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_social_links';
+  info: {
+    displayName: 'Social Link';
+    icon: 'earth';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutFooterColumn extends Struct.ComponentSchema {
   collectionName: 'components_layout_footer_columns';
   info: {
@@ -67,6 +94,41 @@ export interface SectionsChannelsBar extends Struct.ComponentSchema {
     linkUrl: Schema.Attribute.String;
     text: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Conoc\u00E9 nuestros canales de atenci\u00F3n'>;
+  };
+}
+
+export interface SectionsChannelsConverter extends Struct.ComponentSchema {
+  collectionName: 'components_sections_channels_converters';
+  info: {
+    displayName: 'Channels + Converter';
+    icon: 'exchangeFunds';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Conoc\u00E9 m\u00E1s'>;
+    buttonUrl: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/canales-de-atencion'>;
+    icon: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Conoc\u00E9 nuestros canales de atenci\u00F3n'>;
+  };
+}
+
+export interface SectionsFeatureBanner extends Struct.ComponentSchema {
+  collectionName: 'components_sections_feature_banners';
+  info: {
+    displayName: 'Feature Banner';
+    icon: 'picture';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String;
+    buttonUrl: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    illustration: Schema.Attribute.Media<'images'>;
+    kicker: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    variant: Schema.Attribute.Enumeration<['orange', 'teal']> &
+      Schema.Attribute.DefaultTo<'orange'>;
   };
 }
 
@@ -125,6 +187,17 @@ export interface SectionsProductGrid extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsProductLinks extends Struct.ComponentSchema {
+  collectionName: 'components_sections_product_links';
+  info: {
+    displayName: 'Product Links';
+    icon: 'apps';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'elements.quick-link', true>;
+  };
+}
+
 export interface SectionsProductShowcase extends Struct.ComponentSchema {
   collectionName: 'components_sections_product_showcases';
   info: {
@@ -163,6 +236,21 @@ export interface SectionsRichText extends Struct.ComponentSchema {
   };
   attributes: {
     body: Schema.Attribute.RichText;
+  };
+}
+
+export interface SectionsSectionHeading extends Struct.ComponentSchema {
+  collectionName: 'components_sections_section_headings';
+  info: {
+    displayName: 'Section Heading';
+    icon: 'bold';
+  };
+  attributes: {
+    align: Schema.Attribute.Enumeration<['left', 'center']> &
+      Schema.Attribute.DefaultTo<'left'>;
+    kicker: Schema.Attribute.String;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -219,17 +307,23 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'elements.info-card': ElementsInfoCard;
+      'elements.quick-link': ElementsQuickLink;
+      'elements.social-link': ElementsSocialLink;
       'layout.footer-column': LayoutFooterColumn;
       'layout.nav-item': LayoutNavItem;
       'sections.app-banner': SectionsAppBanner;
       'sections.channels-bar': SectionsChannelsBar;
+      'sections.channels-converter': SectionsChannelsConverter;
+      'sections.feature-banner': SectionsFeatureBanner;
       'sections.hero': SectionsHero;
       'sections.info-cards': SectionsInfoCards;
       'sections.news-list': SectionsNewsList;
       'sections.product-grid': SectionsProductGrid;
+      'sections.product-links': SectionsProductLinks;
       'sections.product-showcase': SectionsProductShowcase;
       'sections.promotions-list': SectionsPromotionsList;
       'sections.rich-text': SectionsRichText;
+      'sections.section-heading': SectionsSectionHeading;
       'shared.button': SharedButton;
       'shared.feature-item': SharedFeatureItem;
       'shared.link': SharedLink;

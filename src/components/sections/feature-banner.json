@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_sections_feature_banners",
+  "info": {
+    "displayName": "Feature Banner",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "illustration": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["orange", "teal"],
+      "default": "orange"
+    }
+  }
+}

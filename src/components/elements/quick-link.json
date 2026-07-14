@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_elements_quick_links",
+  "info": {
+    "displayName": "Quick Link",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "prefix": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}
