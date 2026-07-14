@@ -2,28 +2,149 @@ import type { Core } from '@strapi/strapi';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Seed v2 con el contenido del diseño de Figma "Avanz Website" y su sitemap.
-// Idempotente: solo corre si la base está vacía (no hay productos).
+// Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
+// v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
+const SEED_VERSION = 3;
+
 export async function seed(strapi: Core.Strapi) {
+  const store = strapi.store({ type: 'plugin', name: 'avanz-seed' });
+  const version = ((await store.get({ key: 'version' })) as number) ?? 0;
+  if (version >= SEED_VERSION) return;
+
   const existing = await strapi.documents('api::product.product').count({});
-  if (existing > 0) return;
 
-  strapi.log.info('🌱 Sembrando contenido AVANZ (v2)...');
+  if (existing === 0) {
+    strapi.log.info('🌱 Sembrando contenido AVANZ (v2)...');
+    const media = await uploadAssets(strapi);
+    await seedGlobal(strapi, media);
+    await seedProducts(strapi, media);
+    await seedArticles(strapi, media);
+    await seedPromotions(strapi);
+    await seedPages(strapi, media);
+    strapi.log.info('✅ Seed AVANZ v2 completado');
+  }
 
-  const media = await uploadAssets(strapi);
+  if (version < 3) {
+    strapi.log.info('🌱 Migración AVANZ v3: detalle de productos...');
+    await migrateV3(strapi);
+    strapi.log.info('✅ Migración v3 completada');
+  }
 
-  await seedGlobal(strapi, media);
-  await seedProducts(strapi, media);
-  await seedArticles(strapi, media);
-  await seedPromotions(strapi);
-  await seedPages(strapi, media);
+  await store.set({ key: 'version', value: SEED_VERSION });
+}
 
-  strapi.log.info('✅ Seed AVANZ v2 completado');
+// Migración v3: campos de detalle de producto (FAQ, documentos, tabs) y URLs de apps,
+// actualizando la base existente sin re-crearla.
+async function migrateV3(strapi: Core.Strapi) {
+  const media = await uploadAssets(strapi, ['naranja-hero.jpg', 'naranja-promo.jpg']);
+
+  const defaultFaqs = [
+    {
+      question: '¿Cuáles son los beneficios de una cuenta corriente?',
+      answer:
+        'Acceso inmediato a tu dinero, uso de cheques y tarjeta de débito, transferencias con facilidad y gestión 24/7 desde nuestras plataformas digitales.',
+    },
+    {
+      question: '¿Se puede abrir una cuenta bancaria para un menor de edad?',
+      answer:
+        'Sí, contamos con cuentas diseñadas para menores como MiChanchito, que promueven el hábito del ahorro desde temprana edad.',
+    },
+    {
+      question: '¿Las cuentas bancarias ganan mantenimiento de valor?',
+      answer:
+        'Las cuentas en córdobas cuentan con mantenimiento de valor conforme a las regulaciones vigentes.',
+    },
+  ];
+
+  const defaultDocuments = [
+    { label: 'Preguntas Frecuentes Cuenta Corriente.', url: '#' },
+    { label: 'Preguntas y Respuestas Codigo IBAN.', url: '#' },
+    { label: 'Contrato de depósito a la vista y sus servicios relacionados.', url: '#' },
+    { label: 'Guía para el cálculo de intereses.', url: '#' },
+    { label: 'Preguntas frecuentes sobre el Truncamiento de Cheques en Nicaragua.', url: '#' },
+  ];
+
+  const defaultConditions = [
+    { text: 'Monto mínimo de apertura según el tipo de cuenta.' },
+    { text: 'Presentar cédula de identidad vigente.' },
+    { text: 'Aplican términos y condiciones según contrato.' },
+  ];
+
+  const updates: Record<string, any> = {
+    'cuenta-naranja': {
+      photo: media['naranja-hero.jpg']?.id,
+      promoImage: media['naranja-promo.jpg']?.id,
+      introHeading:
+        'Invertí en el futuro de tu familia con una Cuenta Naranja y obtené los mejores beneficios',
+      description:
+        'Nuestra Cuenta de Ahorro Naranja, es única en el mercado, esta combina una buena tasa de interés con disponibilidad de fondos inmediatos y sin plazos pactados. ¡Te damos más por tu dinero! Abrí YA tu cuenta de ahorro naranja desde US$1,000 o su equivalente en córdobas y ganás 3% de interés desde el primer día de apertura.',
+      benefitsIntro: '¡Descubre los beneficios de nuestra cuenta naranja!',
+      conditions: defaultConditions,
+      faqs: defaultFaqs,
+      documents: defaultDocuments,
+    },
+    'cuenta-corriente': {
+      introHeading: 'Descubre la libertad financiera con una Cuenta Corriente AVANZ',
+      benefitsIntro: '¡Descubre los beneficios de nuestra cuenta corriente a la vista!',
+      conditions: defaultConditions,
+      faqs: defaultFaqs,
+      documents: defaultDocuments,
+    },
+    'tarjeta-de-debito': {
+      introHeading: 'Aprovecha los mejores beneficios de tu Tarjeta de Débito',
+      benefitsIntro: 'Nuestros Beneficios',
+      faqs: defaultFaqs.slice(0, 2),
+      documents: defaultDocuments.slice(0, 2),
+    },
+  };
+
+  for (const [slug, data] of Object.entries(updates)) {
+    const product = await strapi
+      .documents('api::product.product')
+      .findFirst({ filters: { slug } });
+    if (!product) continue;
+    await strapi.documents('api::product.product').update({
+      documentId: product.documentId,
+      data,
+      status: 'published',
+    });
+  }
+
+  // Resto de productos: FAQ/documentos/condiciones genéricos para que ninguna
+  // página de detalle quede vacía (editable luego desde el admin).
+  const all = await strapi
+    .documents('api::product.product')
+    .findMany({ pagination: { pageSize: 100 } } as any);
+  for (const product of all as any[]) {
+    if (updates[product.slug]) continue;
+    await strapi.documents('api::product.product').update({
+      documentId: product.documentId,
+      data: {
+        benefitsIntro: `Descubre los beneficios de ${product.name}`,
+        faqs: defaultFaqs,
+        documents: defaultDocuments.slice(0, 3),
+        conditions: defaultConditions,
+      } as any,
+      status: 'published',
+    });
+  }
+
+  // URLs de tiendas de apps en Global
+  const global = await strapi.documents('api::global.global').findFirst({});
+  if (global) {
+    await strapi.documents('api::global.global').update({
+      documentId: global.documentId,
+      data: {
+        appStoreUrl: 'https://apps.apple.com',
+        playStoreUrl: 'https://play.google.com',
+      } as any,
+    });
+  }
 }
 
 type MediaMap = Record<string, any>;
 
-async function uploadAssets(strapi: Core.Strapi): Promise<MediaMap> {
+async function uploadAssets(strapi: Core.Strapi, only?: string[]): Promise<MediaMap> {
   const assetsDir = path.join(__dirname, '..', '..', 'scripts', 'assets');
   const map: MediaMap = {};
   if (!fs.existsSync(assetsDir)) return map;
@@ -39,6 +160,7 @@ async function uploadAssets(strapi: Core.Strapi): Promise<MediaMap> {
   for (const fileName of fs.readdirSync(assetsDir)) {
     const ext = path.extname(fileName).toLowerCase();
     if (!mimeTypes[ext]) continue;
+    if (only && !only.includes(fileName)) continue;
     const filePath = path.join(assetsDir, fileName);
     const stats = fs.statSync(filePath);
     try {

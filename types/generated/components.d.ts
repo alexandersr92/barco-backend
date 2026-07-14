@@ -1,5 +1,30 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ElementsDocumentLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_document_links';
+  info: {
+    displayName: 'Document Link';
+    icon: 'file';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'files' | 'images'>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsFaqItem extends Struct.ComponentSchema {
+  collectionName: 'components_elements_faq_items';
+  info: {
+    displayName: 'FAQ Item';
+    icon: 'question';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ElementsInfoCard extends Struct.ComponentSchema {
   collectionName: 'components_elements_info_cards';
   info: {
@@ -306,6 +331,8 @@ export interface SharedSeo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'elements.document-link': ElementsDocumentLink;
+      'elements.faq-item': ElementsFaqItem;
       'elements.info-card': ElementsInfoCard;
       'elements.quick-link': ElementsQuickLink;
       'elements.social-link': ElementsSocialLink;

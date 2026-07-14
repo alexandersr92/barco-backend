@@ -40,6 +40,14 @@
       "component": "elements.social-link",
       "repeatable": true
     },
+    "appStoreUrl": {
+      "type": "string",
+      "default": "https://apps.apple.com"
+    },
+    "playStoreUrl": {
+      "type": "string",
+      "default": "https://play.google.com"
+    },
     "usdBuy": {
       "type": "decimal",
       "default": 36.62

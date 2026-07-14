@@ -52,6 +52,32 @@
       "component": "shared.feature-item",
       "repeatable": true
     },
+    "conditions": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
+    "introHeading": {
+      "type": "string"
+    },
+    "benefitsIntro": {
+      "type": "string"
+    },
+    "promoImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "faqs": {
+      "type": "component",
+      "component": "elements.faq-item",
+      "repeatable": true
+    },
+    "documents": {
+      "type": "component",
+      "component": "elements.document-link",
+      "repeatable": true
+    },
     "photo": {
       "type": "media",
       "multiple": false,

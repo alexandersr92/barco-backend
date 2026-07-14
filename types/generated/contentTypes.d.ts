@@ -492,6 +492,8 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
   attributes: {
     address: Schema.Attribute.String;
+    appStoreUrl: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'https://apps.apple.com'>;
     audienceNav: Schema.Attribute.Component<'shared.link', true>;
     copyright: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -509,6 +511,8 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     logo: Schema.Attribute.Media<'images'>;
     mainNav: Schema.Attribute.Component<'layout.nav-item', true>;
     phone: Schema.Attribute.String;
+    playStoreUrl: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'https://play.google.com'>;
     publishedAt: Schema.Attribute.DateTime;
     siteName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Banco Avanz'>;
@@ -583,16 +587,21 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'personas'>;
     benefits: Schema.Attribute.Component<'shared.feature-item', true>;
+    benefitsIntro: Schema.Attribute.String;
     cardImage: Schema.Attribute.Media<'images'>;
     category: Schema.Attribute.Enumeration<
       ['cuenta', 'tarjeta', 'credito', 'seguro', 'transferencia', 'servicio']
     > &
       Schema.Attribute.Required;
+    conditions: Schema.Attribute.Component<'shared.feature-item', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
+    documents: Schema.Attribute.Component<'elements.document-link', true>;
+    faqs: Schema.Attribute.Component<'elements.faq-item', true>;
     features: Schema.Attribute.Component<'shared.feature-item', true>;
+    introHeading: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -602,6 +611,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     photo: Schema.Attribute.Media<'images'>;
+    promoImage: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     requirements: Schema.Attribute.Component<'shared.feature-item', true>;
     seo: Schema.Attribute.Component<'shared.seo', false>;

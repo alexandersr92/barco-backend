@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_elements_document_links",
+  "info": {
+    "displayName": "Document Link",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["files", "images"]
+    }
+  }
+}
