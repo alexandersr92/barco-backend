@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_app_banners",
+  "info": {
+    "displayName": "App Banner",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "appStoreUrl": {
+      "type": "string"
+    },
+    "playStoreUrl": {
+      "type": "string"
+    }
+  }
+}

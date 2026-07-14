@@ -1,0 +1,52 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "description": "Configuración global del sitio: navegación, footer y datos de contacto"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "Banco Avanz"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "mainNav": {
+      "type": "component",
+      "component": "layout.nav-item",
+      "repeatable": true
+    },
+    "topNav": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "ebankingUrl": {
+      "type": "string",
+      "default": "https://ebanking.avanzbanc.com"
+    },
+    "footerColumns": {
+      "type": "component",
+      "component": "layout.footer-column",
+      "repeatable": true
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Producto",
+    "description": "Productos financieros: cuentas, tarjetas y créditos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["cuenta", "tarjeta", "credito", "servicio"],
+      "required": true
+    },
+    "audience": {
+      "type": "enumeration",
+      "enum": ["personas", "empresas"],
+      "default": "personas",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "features": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
+    "benefits": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
+    "requirements": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "cardImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_nav_items",
+  "info": {
+    "displayName": "Nav Item",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    }
+  }
+}

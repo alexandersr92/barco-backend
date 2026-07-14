@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_promotions_lists",
+  "info": {
+    "displayName": "Promotions List",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "¡Entérate de las promociones que Avanz tiene para vos!"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_sections_product_showcases",
+  "info": {
+    "displayName": "Product Showcase",
+    "icon": "creditCard"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "features": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "cardImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
+    },
+    "imageLeft": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_product_grids",
+  "info": {
+    "displayName": "Product Grid",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["cuenta", "tarjeta", "credito", "servicio"]
+    },
+    "audience": {
+      "type": "enumeration",
+      "enum": ["personas", "empresas"]
+    }
+  }
+}

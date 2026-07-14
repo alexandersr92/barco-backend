@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Página",
+    "description": "Páginas del sitio construidas con secciones"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.hero",
+        "sections.product-showcase",
+        "sections.product-grid",
+        "sections.info-cards",
+        "sections.news-list",
+        "sections.promotions-list",
+        "sections.app-banner",
+        "sections.channels-bar",
+        "sections.rich-text"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

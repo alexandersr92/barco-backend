@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_elements_info_cards",
+  "info": {
+    "displayName": "Info Card",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "linkLabel": {
+      "type": "string"
+    },
+    "linkUrl": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}
