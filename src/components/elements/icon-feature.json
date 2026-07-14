@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_elements_icon_features",
+  "info": {
+    "displayName": "Icon Feature",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

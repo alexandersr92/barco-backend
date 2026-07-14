@@ -4,7 +4,7 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 3;
+const SEED_VERSION = 4;
 
 export async function seed(strapi: Core.Strapi) {
   const store = strapi.store({ type: 'plugin', name: 'avanz-seed' });
@@ -30,7 +30,222 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('✅ Migración v3 completada');
   }
 
+  if (version < 4) {
+    strapi.log.info('🌱 Migración AVANZ v4: template tarjetas de crédito...');
+    await migrateV4(strapi);
+    strapi.log.info('✅ Migración v4 completada');
+  }
+
   await store.set({ key: 'version', value: SEED_VERSION });
+}
+
+// Migración v4: template de tarjetas de crédito (hero oscuro, feature boxes,
+// planes de recompensa, canje) según diseño Figma 1549:10386.
+async function migrateV4(strapi: Core.Strapi) {
+  const media = await uploadAssets(strapi, [
+    'tarjeta-signature.png',
+    'feat-beneficios.svg',
+    'feat-fechas.svg',
+    'feat-medida.svg',
+    'reward-puntos.svg',
+    'reward-cashback-fill.svg',
+    'reward-tasa.svg',
+  ]);
+
+  const featureBoxes = [
+    {
+      title: 'Más beneficios',
+      description: 'Nosotros premiamos tus hábitos de consumo.',
+      icon: media['feat-beneficios.svg']?.id,
+    },
+    {
+      title: 'Fechas de pago flexibles',
+      description: 'Te ofrecemos diferentes fechas de pago que se ajustan a tu realidad.',
+      icon: media['feat-fechas.svg']?.id,
+    },
+    {
+      title: 'Tu tarjeta a tu medida',
+      description: 'Disfrutá la experiencia de diseñar tu tarjeta a tu medida.',
+      icon: media['feat-medida.svg']?.id,
+    },
+  ];
+
+  const redeemIntro =
+    'Podes hacer efectiva tu recompensa depositándola a tus Cuentas o pagar tus saldos de Tarjetas de Crédito en los siguientes canales:';
+  const redeemItems = [
+    { text: 'Desde Avanz App de forma fácil y rápida.' },
+    { text: 'Llama a nuestra sucursal telefónica 2223-7676 opción 4.' },
+    { text: 'En nuestros cajeros automáticos Avanz.' },
+  ];
+
+  const rewardPlan = (
+    title: string,
+    programText: string,
+    bonusText: string,
+    icon?: any,
+  ) => ({
+    title,
+    ctaLabel: 'Solicitala aquí',
+    ctaUrl: '/canales-de-atencion',
+    programText,
+    bonusText,
+    icon,
+  });
+
+  const cardDocs = (extra: string[] = []) =>
+    [
+      'Contrato de Tarjeta de Crédito.',
+      ...extra,
+      'Tabla de costos',
+      'Guía para el cálculo de intereses en Tarjeta de Crédito.',
+      'Preguntas Frecuentes.',
+      'Guía de gestiones en e-banking.',
+      'Reglamento Programa Puntos',
+      'Reglamento Programa Cash Back',
+    ].map((label) => ({ label, url: '#' }));
+
+  const updates: Record<string, any> = {
+    'tarjeta-de-credito-signature': {
+      heroTheme: 'dark',
+      cardImage: media['tarjeta-signature.png']?.id,
+      shortDescription:
+        'Exclusividad y lujo se unen en nuestra Tarjeta Signature. Descubre un mundo de privilegios sin igual',
+      featuresHeading: 'Con nosotros...\n¡Tus hábitos te recompensan!',
+      featureBoxes,
+      benefitsIntro: '¡Descubre los beneficios de tener un Tarjeta de Crédito Signature!',
+      benefits: [
+        { text: 'Acumulá beneficios en todas tus compras del mes.' },
+        {
+          text: 'Elegí acumular doble beneficio en los comercios donde realizás tus compras mensuales habituales, podes combinar hasta dos categorías de comercios.',
+        },
+      ],
+      requirements: [],
+      conditions: [],
+      redeemIntro,
+      redeemItems,
+      rewardPlans: [
+        rewardPlan(
+          'Programa de Puntos',
+          '1.50 puntos por cada dólar de compra en todos los comercios\n3 puntos por cada dólar de compra en comercios seleccionados por vos',
+          '6,500 puntos (por consumo $5,000 los primeros 60 días)',
+          media['reward-puntos.svg']?.id,
+        ),
+        rewardPlan(
+          'Cash Back',
+          '1% Cash Back por cada dólar de compra en todos los comercios y por cada dólar pagado a tu tarjeta\n2% Cash Back por cada dólar de compra en comercios seleccionados por vos',
+          '4% Cash Back (la primera compra en los primeros 60 días, máx. $50)',
+          media['reward-cashback-fill.svg']?.id,
+        ),
+        rewardPlan(
+          'Tasa Preferencial',
+          'No aplica',
+          'C$1,000 (por consumo C$2,000 los primeros 60 días)',
+          media['reward-tasa.svg']?.id,
+        ),
+      ],
+      faqs: [
+        {
+          question:
+            '¿Cuántos puntos acumulo por cada dólar de consumo (o su equivalente en córdobas) en mi tarjeta de crédito Signature?',
+          answer:
+            'Acumulás 1.50 puntos por cada dólar de compra en todos los comercios y 3 puntos en los comercios seleccionados por vos.',
+        },
+        {
+          question: '¿Cuántos puntos Avanz puedo acumular al mes?',
+          answer: 'No existe límite de acumulación mensual de puntos Avanz.',
+        },
+        {
+          question:
+            '¿Cuáles son los comercios donde puedo acumular doble puntos Avanz en mi tarjeta Signature?',
+          answer:
+            'Podés elegir hasta dos categorías de comercios donde realizás tus compras mensuales habituales.',
+        },
+        {
+          question:
+            '¿Puedo entrar gratis al salón VIP del Aeropuerto de Managua con mi tarjeta Signature de Avanz?',
+          answer:
+            'Sí, tu Tarjeta Signature incluye acceso al salón VIP a través del programa PriorityPass.',
+        },
+      ],
+      documents: cardDocs(['Programa PriorityPass']),
+    },
+    'tarjeta-de-credito-clasica': {
+      heroTheme: 'dark',
+      shortDescription: 'Con nosotros... ¡Tus hábitos te recompensan!',
+      featuresHeading: 'Con nosotros...\n¡Tus hábitos te recompensan!',
+      featureBoxes,
+      benefitsIntro: '¡Descubre los beneficios de tener un Tarjeta de Crédito Clásica!',
+      requirements: [],
+      conditions: [],
+      redeemIntro,
+      redeemItems,
+      rewardPlans: [
+        rewardPlan(
+          'Programa de Puntos',
+          '1.25 puntos por cada dólar de compra en todos los comercios\n2.5 puntos por cada dólar de compra en comercios seleccionados por vos',
+          '5,000 puntos (por consumo $750 los primeros 60 días)',
+          media['reward-puntos.svg']?.id,
+        ),
+        rewardPlan(
+          'Cash Back',
+          '1% Cash Back por cada dólar de compra en todos los comercios y por cada dólar pagado a tu tarjeta\n2% Cash Back por cada dólar de compra en comercios seleccionados por vos',
+          '2% Cash Back (la primera compra en los primeros 60 días, máx. $25)',
+          media['reward-cashback-fill.svg']?.id,
+        ),
+        rewardPlan(
+          'Tasa Preferencial',
+          'No aplica',
+          'C$500 (por consumo C$1,000 los primeros 60 días)',
+          media['reward-tasa.svg']?.id,
+        ),
+      ],
+      documents: cardDocs(),
+    },
+    'tarjeta-de-credito-gold': {
+      heroTheme: 'dark',
+      shortDescription: 'Con nosotros... ¡Tus hábitos te recompensan!',
+      featuresHeading: 'Con nosotros...\n¡Tus hábitos te recompensan!',
+      featureBoxes,
+      benefitsIntro: '¡Descubre los beneficios de tener un Tarjeta de Crédito Gold!',
+      requirements: [],
+      conditions: [],
+      redeemIntro,
+      redeemItems,
+      rewardPlans: [
+        rewardPlan(
+          'Programa de Puntos',
+          '2.5 puntos por cada dólar de compra en comercios elegidos por vos\n1.25 puntos por cada dólar de compra en otros comercios',
+          '5,000 puntos (por consumo USD 750 los primeros 60 días)',
+          media['reward-puntos.svg']?.id,
+        ),
+        rewardPlan(
+          'Cash Back',
+          '2% Cash Back por cada dólar de compra en comercios elegidos por vos\n1% Cash Back por cada dólar de compra en otros comercios',
+          '2% Cash Back (la 1ra compra en los primeros 60 días, máx. $25)',
+          media['reward-cashback-fill.svg']?.id,
+        ),
+        rewardPlan(
+          'Tasa Preferencial',
+          'No aplica',
+          'C$500 (por consumo C$1,000 los primeros 60 días)',
+          media['reward-tasa.svg']?.id,
+        ),
+      ],
+      documents: cardDocs(),
+    },
+  };
+
+  for (const [slug, data] of Object.entries(updates)) {
+    const product = await strapi
+      .documents('api::product.product')
+      .findFirst({ filters: { slug } });
+    if (!product) continue;
+    await strapi.documents('api::product.product').update({
+      documentId: product.documentId,
+      data,
+      status: 'published',
+    });
+  }
 }
 
 // Migración v3: campos de detalle de producto (FAQ, documentos, tabs) y URLs de apps,

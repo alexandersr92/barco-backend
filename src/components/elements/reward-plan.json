@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_elements_reward_plans",
+  "info": {
+    "displayName": "Reward Plan",
+    "icon": "gift"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string",
+      "default": "Solicitala aquí"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/canales-de-atencion"
+    },
+    "programText": {
+      "type": "text"
+    },
+    "bonusText": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

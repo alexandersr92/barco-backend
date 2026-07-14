@@ -600,7 +600,11 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.RichText;
     documents: Schema.Attribute.Component<'elements.document-link', true>;
     faqs: Schema.Attribute.Component<'elements.faq-item', true>;
+    featureBoxes: Schema.Attribute.Component<'elements.icon-feature', true>;
     features: Schema.Attribute.Component<'shared.feature-item', true>;
+    featuresHeading: Schema.Attribute.String;
+    heroTheme: Schema.Attribute.Enumeration<['light', 'dark']> &
+      Schema.Attribute.DefaultTo<'light'>;
     introHeading: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -613,7 +617,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     photo: Schema.Attribute.Media<'images'>;
     promoImage: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    redeemIntro: Schema.Attribute.Text;
+    redeemItems: Schema.Attribute.Component<'shared.feature-item', true>;
     requirements: Schema.Attribute.Component<'shared.feature-item', true>;
+    rewardPlans: Schema.Attribute.Component<'elements.reward-plan', true>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     shortDescription: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;

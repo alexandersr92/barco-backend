@@ -60,6 +60,32 @@
     "introHeading": {
       "type": "string"
     },
+    "heroTheme": {
+      "type": "enumeration",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "featuresHeading": {
+      "type": "string"
+    },
+    "featureBoxes": {
+      "type": "component",
+      "component": "elements.icon-feature",
+      "repeatable": true
+    },
+    "rewardPlans": {
+      "type": "component",
+      "component": "elements.reward-plan",
+      "repeatable": true
+    },
+    "redeemIntro": {
+      "type": "text"
+    },
+    "redeemItems": {
+      "type": "component",
+      "component": "shared.feature-item",
+      "repeatable": true
+    },
     "benefitsIntro": {
       "type": "string"
     },

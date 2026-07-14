@@ -25,6 +25,19 @@ export interface ElementsFaqItem extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsIconFeature extends Struct.ComponentSchema {
+  collectionName: 'components_elements_icon_features';
+  info: {
+    displayName: 'Icon Feature';
+    icon: 'star';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ElementsInfoCard extends Struct.ComponentSchema {
   collectionName: 'components_elements_info_cards';
   info: {
@@ -52,6 +65,24 @@ export interface ElementsQuickLink extends Struct.ComponentSchema {
     label: Schema.Attribute.String & Schema.Attribute.Required;
     prefix: Schema.Attribute.String;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsRewardPlan extends Struct.ComponentSchema {
+  collectionName: 'components_elements_reward_plans';
+  info: {
+    displayName: 'Reward Plan';
+    icon: 'gift';
+  };
+  attributes: {
+    bonusText: Schema.Attribute.Text;
+    ctaLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Solicitala aqu\u00ED'>;
+    ctaUrl: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/canales-de-atencion'>;
+    icon: Schema.Attribute.Media<'images'>;
+    programText: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -333,8 +364,10 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'elements.document-link': ElementsDocumentLink;
       'elements.faq-item': ElementsFaqItem;
+      'elements.icon-feature': ElementsIconFeature;
       'elements.info-card': ElementsInfoCard;
       'elements.quick-link': ElementsQuickLink;
+      'elements.reward-plan': ElementsRewardPlan;
       'elements.social-link': ElementsSocialLink;
       'layout.footer-column': LayoutFooterColumn;
       'layout.nav-item': LayoutNavItem;
