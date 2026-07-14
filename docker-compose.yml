@@ -1,0 +1,58 @@
+# Compose autocontenido para Dokploy: Strapi + Postgres + volúmenes persistentes.
+# Las variables (secretos y DATABASE_PASSWORD) se definen en la sección
+# Environment de Dokploy; docker compose las interpola aquí.
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 1337
+      NODE_ENV: production
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_SSL: "false"
+    volumes:
+      # Persiste las imágenes subidas entre redeploys
+      - strapi-uploads:/opt/app/public/uploads
+    depends_on:
+      - database
+    expose:
+      - "1337"
+    networks:
+      - dokploy-network
+      - internal
+
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - strapi-data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+volumes:
+  strapi-uploads:
+  strapi-data:
+
+networks:
+  # Red compartida de Dokploy (Traefik) para exponer el dominio
+  dokploy-network:
+    external: true
+  internal:
