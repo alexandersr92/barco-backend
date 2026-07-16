@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_mission_visions",
+  "info": {
+    "displayName": "Misión y Visión",
+    "description": "Bloques de texto con título a la izquierda y una foto a la derecha",
+    "icon": "bullhorn"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "elements.titled-text",
+      "repeatable": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

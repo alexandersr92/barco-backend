@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_split_texts",
+  "info": {
+    "displayName": "Texto en dos columnas",
+    "description": "Título grande a la izquierda y párrafo a la derecha",
+    "icon": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "divider": {
+      "type": "boolean",
+      "default": false,
+      "description": "Muestra una barra decorativa corta arriba"
+    }
+  }
+}

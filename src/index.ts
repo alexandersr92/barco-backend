@@ -28,6 +28,10 @@ async function setPublicPermissions(strapi: Core.Strapi) {
     'api::promotion.promotion.findOne',
     'api::page.page.find',
     'api::page.page.findOne',
+    'api::channel.channel.find',
+    'api::channel.channel.findOne',
+    'api::audience.audience.find',
+    'api::audience.audience.findOne',
   ];
 
   for (const action of actions) {

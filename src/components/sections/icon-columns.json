@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_icon_columns",
+  "info": {
+    "displayName": "Columnas con ícono",
+    "description": "N columnas centradas con ícono, título y descripción, con divisores opcionales",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "anchorId": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "elements.icon-feature",
+      "repeatable": true
+    },
+    "dividers": {
+      "type": "boolean",
+      "default": false,
+      "description": "Muestra líneas verticales entre columnas"
+    }
+  }
+}

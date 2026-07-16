@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_leaders",
+  "info": {
+    "displayName": "Nuestros líderes",
+    "description": "Líderes agrupados en pestañas",
+    "icon": "users"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "leaders": {
+      "type": "component",
+      "component": "elements.leader",
+      "repeatable": true
+    }
+  }
+}

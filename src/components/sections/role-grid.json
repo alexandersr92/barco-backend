@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_role_grids",
+  "info": {
+    "displayName": "Roles / grilla de texto",
+    "description": "Columna izquierda (título + texto + botón) y grilla de celdas de texto a la derecha",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "elements.titled-text",
+      "repeatable": true
+    }
+  }
+}

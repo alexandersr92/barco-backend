@@ -10,6 +10,10 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "text",
+      "description": "Párrafo opcional bajo el título (usado en Información Financiera)"
+    },
     "url": {
       "type": "string"
     },

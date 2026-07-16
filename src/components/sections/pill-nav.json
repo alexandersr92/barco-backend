@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_pill_navs",
+  "info": {
+    "displayName": "Barra de píldoras",
+    "description": "Barra de anclas/enlaces con forma de píldora bajo el hero",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    }
+  }
+}

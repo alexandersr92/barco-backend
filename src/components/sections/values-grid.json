@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_values_grids",
+  "info": {
+    "displayName": "Valores con íconos",
+    "description": "Valores con ícono y descripción alrededor de una imagen central",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "elements.icon-feature",
+      "repeatable": true
+    },
+    "centerImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_sections_icon_blocks",
+  "info": {
+    "displayName": "Bloque con ícono",
+    "description": "Ícono o logo centrado + título + texto + botón opcional",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "iconWidth": {
+      "type": "integer",
+      "description": "Ancho del ícono/logo en px (por defecto 48)"
+    },
+    "anchorId": {
+      "type": "string",
+      "description": "Ancla para enlazar desde la barra de píldoras"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "align": {
+      "type": "enumeration",
+      "enum": ["center", "left"],
+      "default": "center"
+    }
+  }
+}

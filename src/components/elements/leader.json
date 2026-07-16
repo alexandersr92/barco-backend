@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_elements_leaders",
+  "info": {
+    "displayName": "Líder",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string",
+      "description": "Pestaña bajo la que se agrupa (ej. Junta Directiva, Gerencia)"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

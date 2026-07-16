@@ -20,6 +20,16 @@
       "type": "enumeration",
       "enum": ["left", "center"],
       "default": "left"
+    },
+    "background": {
+      "type": "enumeration",
+      "enum": ["none", "secondary"],
+      "default": "none",
+      "description": "Fondo de la sección: sin fondo, o banda azul petróleo a todo el ancho con texto blanco"
+    },
+    "maxWidth": {
+      "type": "integer",
+      "description": "Ancho máximo del contenido en px (por defecto 1220)"
     }
   }
 }

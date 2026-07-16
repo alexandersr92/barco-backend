@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_sections_quote_banners",
+  "info": {
+    "displayName": "Banner con cita",
+    "description": "Foto + cita destacada, con título, texto y fondo opcionales",
+    "icon": "quote"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "text"
+    },
+    "body": {
+      "type": "text",
+      "description": "Párrafos bajo la cita (se separan con línea en blanco y caen en 2 columnas)"
+    },
+    "attribution": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": ["left", "right"],
+      "default": "left"
+    },
+    "background": {
+      "type": "enumeration",
+      "enum": ["none", "primary", "primaryLight", "secondary", "surface"],
+      "default": "none"
+    }
+  }
+}

@@ -25,6 +25,17 @@
       "type": "component",
       "component": "shared.button",
       "repeatable": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary"],
+      "default": "primary",
+      "description": "Color del panel: naranja (primary) o azul petróleo (secondary)"
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "description": "Banner más bajo (680px del diseño) en vez del hero alto del home"
     }
   }
 }

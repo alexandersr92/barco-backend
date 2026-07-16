@@ -479,6 +479,77 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAudienceAudience extends Struct.CollectionTypeSchema {
+  collectionName: 'audiences';
+  info: {
+    description: 'Pesta\u00F1as principales del sitio (Personas, Empresas, Sobre nosotros). Cada una define su propio men\u00FA y agrupa sus p\u00E1ginas.';
+    displayName: 'Audiencia';
+    pluralName: 'audiences';
+    singularName: 'audience';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::audience.audience'
+    > &
+      Schema.Attribute.Private;
+    mainNav: Schema.Attribute.Component<'layout.nav-item', true>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
+  collectionName: 'channels';
+  info: {
+    description: 'Canales de atenci\u00F3n: Avanz M\u00F3vil, e-Banking, sucursales, ATM, etc.';
+    displayName: 'Canal de Atenci\u00F3n';
+    pluralName: 'channels';
+    singularName: 'channel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    buttonIcon: Schema.Attribute.Enumeration<['none', 'phone']> &
+      Schema.Attribute.DefaultTo<'none'>;
+    buttonLabel: Schema.Attribute.String;
+    buttonUrl: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    features: Schema.Attribute.Component<'shared.feature-item', true>;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel.channel'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -538,6 +609,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    audience: Schema.Attribute.Relation<'manyToOne', 'api::audience.audience'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -560,10 +632,22 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.app-banner',
         'sections.channels-bar',
         'sections.rich-text',
+        'sections.mission-vision',
+        'sections.values-grid',
+        'sections.leaders',
+        'sections.card-grid',
+        'sections.document-group',
+        'sections.pill-nav',
+        'sections.icon-block',
+        'sections.icon-columns',
+        'sections.quote-banner',
+        'sections.split-text',
+        'sections.media-text',
+        'sections.role-grid',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    slug: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -625,6 +709,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     seo: Schema.Attribute.Component<'shared.seo', false>;
     shortDescription: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    tabsHeading: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1174,6 +1259,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
+      'api::audience.audience': ApiAudienceAudience;
+      'api::channel.channel': ApiChannelChannel;
       'api::global.global': ApiGlobalGlobal;
       'api::page.page': ApiPagePage;
       'api::product.product': ApiProductProduct;

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_card_grids",
+  "info": {
+    "displayName": "Grilla de tarjetas",
+    "description": "Tarjetas con imagen arriba, kicker, título, descripción y botón",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "component": "elements.info-card",
+      "repeatable": true
+    }
+  }
+}

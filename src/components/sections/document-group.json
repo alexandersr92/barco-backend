@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_document_groups",
+  "info": {
+    "displayName": "Grupo de documentos",
+    "description": "Encabezado + intro + lista de documentos descargables (con descripción opcional)",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "anchorId": {
+      "type": "string",
+      "description": "Ancla para enlazar desde la barra de píldoras (ej. estados-financieros)"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "description": "Imagen opcional junto a la intro (ej. tabla de Calificación de Riesgo)"
+    },
+    "items": {
+      "type": "component",
+      "component": "elements.document-link",
+      "repeatable": true
+    }
+  }
+}

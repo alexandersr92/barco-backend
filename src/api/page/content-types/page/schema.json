@@ -16,9 +16,15 @@
       "required": true
     },
     "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
+      "type": "string",
+      "required": true,
+      "description": "Identificador de la página dentro de su audiencia. No es único global: /personas/cuentas y /empresas/cuentas comparten el slug 'cuentas'."
+    },
+    "audience": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::audience.audience",
+      "inversedBy": "pages"
     },
     "sections": {
       "type": "dynamiczone",
@@ -35,7 +41,19 @@
         "sections.promotions-list",
         "sections.app-banner",
         "sections.channels-bar",
-        "sections.rich-text"
+        "sections.rich-text",
+        "sections.mission-vision",
+        "sections.values-grid",
+        "sections.leaders",
+        "sections.card-grid",
+        "sections.document-group",
+        "sections.pill-nav",
+        "sections.icon-block",
+        "sections.icon-columns",
+        "sections.quote-banner",
+        "sections.split-text",
+        "sections.media-text",
+        "sections.role-grid"
       ]
     },
     "seo": {

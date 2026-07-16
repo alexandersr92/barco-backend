@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_elements_titled_texts",
+  "info": {
+    "displayName": "Bloque con título",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}
