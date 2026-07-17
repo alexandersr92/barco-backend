@@ -1,0 +1,621 @@
+{
+  "products": [
+    {
+      "slug": "cuenta-corriente",
+      "shortDescription": "AVANZ pone a tu disposición una cuenta corriente estándar para tus gastos diarios o para manejar el efectivo generado por tu negocio de una manera segura y eficiente.",
+      "description": "AVANZ pone a tu disposición una cuenta corriente estándar para tus gastos diarios o para manejar el efectivo generado por tu negocio de una manera segura y eficiente.\n\nCon tu cuenta corriente AVANZ, tu dinero estará siempre disponible en la palma de tu mano y podrás realizar tus pagos con tu chequera, tu tarjeta de débito, AVANZ Móvil, e-banking y transacciones con código\n\nRequisitos Generales\n\nPreguntas Frecuentes Cuenta Corriente.\n\nPreguntas y Respuestas Codigo IBAN.\n\nContrato de depósito a la vista y sus servicios relacionados.\n\nTarifas de mínimos y condiciones para Cuentas Corrientes.\n\nSolicitud de cuentas en línea.\n\nGuía para el cálculo de intereses.\n\nPreguntas frecuentes sobre el Truncamiento de Cheques en Nicaragua.",
+      "features": [
+        "Documento de Identidad Vigente",
+        "Dos (2) Referencias Personales",
+        "Soporte de ingresos",
+        "Depósito inicial"
+      ]
+    },
+    {
+      "slug": "cuenta-proactiva",
+      "shortDescription": "La cuenta ProActiva está diseñada para clientes preferenciales como vos, que buscás rentabilidad y flexibilidad de tu dinero. Esta cuenta innovadora, te genera intereses escalonados de acuerdo al monto que depositás.",
+      "description": "La cuenta ProActiva está diseñada para clientes preferenciales como vos, que buscás rentabilidad y flexibilidad de tu dinero. Esta cuenta innovadora, te genera intereses escalonados de acuerdo al monto que depositás.\n\nRequisitos Generales\n\nBeneficios:",
+      "features": [
+        "Documento de Identidad Vigente",
+        "Dos (2) Referencias Personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Tarjeta de débito VISA internacional",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7"
+      ]
+    },
+    {
+      "slug": "deposito-a-plazo-fijo",
+      "shortDescription": "El Depósito a Plazo Fijo es una inversión realizada a un plazo pactado, que te permite maximizar tus ahorros de una forma fácil y segura generando intereses más altos que otros productos financieros.",
+      "description": "El Depósito a Plazo Fijo es una inversión realizada a un plazo pactado, que te permite maximizar tus ahorros de una forma fácil y segura generando intereses más altos que otros productos financieros.\n\nTe ofrecemos la mejor tasa de interés, accesibles montos de inversión y múltiples opciones de plazo. Además, con nosotros podés escoger la frecuencia de pago de los intereses.\n\nRequisitos Generales\n\nBeneficios:\n\nTabla de mínimos y condiciones para Depósito a Plazo Fijo.\n\nPreguntas y Respuestas Código IBAN.\n\nSolicitud de cuenta de ahorro en línea.\n\nPreguntas Frecuentes- Cuentas bancarias.\n\nGuía para el cálculo de intereses.\n\nTabla de Inversión - Cuenta Proactiva.\n\nContrato de depósito a la vista y sus servicios relacionados.\n\nContrato de depósito a plazo fijo.",
+      "features": [
+        "Documento de Identidad Vigente",
+        "Dos (2) Referencias Personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7"
+      ]
+    },
+    {
+      "slug": "cuenta-naranja",
+      "shortDescription": "Nuestra Cuenta de Ahorro Naranja, es única en el mercado, esta combina una buena tasa de interés con disponibilidad de fondos inmediatos y sin plazos pactados. ¡Te damos más por tu dinero! Abrí YA tu cuenta de ahorro naranja desde US$1,0…",
+      "description": "Nuestra Cuenta de Ahorro Naranja, es única en el mercado, esta combina una buena tasa de interés con disponibilidad de fondos inmediatos y sin plazos pactados. ¡Te damos más por tu dinero! Abrí YA tu cuenta de ahorro naranja desde US$1,000 o su equivalente en córdobas y ganás 3% de interés desde el primer día de apertura.\n\nRequisitos Generales\n\nBeneficios:\n\nPreguntas Frecuentes Cuentas de Ahorro.\n\nPreguntas y Respuestas Código IBAN.\n\nContrato de depósito a la vista y servicios relacionados.\n\nGuía para el cálculo de intereses.\n\nTarifas de mínimos y comisiones para Cuentas de Ahorro.\n\nSolicitud de cuentas en línea.",
+      "features": [
+        "Documento de identidad vigente",
+        "(2) referencias personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Tarjeta de débito Visa Internacional.",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7"
+      ]
+    },
+    {
+      "slug": "cuenta-plan-proahorro",
+      "shortDescription": "Nuestro Plan ProAhorro te ofrece la flexibilidad de definir el plazo y el monto del depósito que deseas ahorrar mensualmente, para lograr tus proyectos y alcanzar tus objetivos.",
+      "description": "Nuestro Plan ProAhorro te ofrece la flexibilidad de definir el plazo y el monto del depósito que deseas ahorrar mensualmente, para lograr tus proyectos y alcanzar tus objetivos.\n\nEs tu programa de ahorro mensual con plazos y montos flexibles, que te permite obtener una tasa de interés atractiva sobre el monto ahorrado. Vos escogés el plazo según tu meta y nosotros premiamos tu perseverancia..\n\nRequisitos Generales\n\nBeneficios:",
+      "features": [
+        "Documento de identidad vigente",
+        "(2) referencias personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7"
+      ]
+    },
+    {
+      "slug": "cuenta-michanchito",
+      "shortDescription": "En Avanz reconocemos la importancia del ahorro, por eso MiChanchito tiene como objetivo ayudar en la educación financiera de tus hijos y fomentar la cultura del ahorro desde temprana edad.",
+      "description": "En Avanz reconocemos la importancia del ahorro, por eso MiChanchito tiene como objetivo ayudar en la educación financiera de tus hijos y fomentar la cultura del ahorro desde temprana edad.\n\nRequisitos Generales\n\nBeneficios:\n\nPreguntas Frecuentes Cuentas de Ahorro.\n\nPreguntas y Respuestas del Código IBAN.\n\nContrato de depósito a la vista y servicios relacionados.\n\nGuía para el cálculo de intereses.\n\nTarifas de mínimos y comisiones para Cuentas de Ahorro.\n\nSolicitud de cuentas en línea.",
+      "features": [
+        "Documento de identidad vigente",
+        "Certificado de nacimiento del niño (a)",
+        "(2) referencias personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7"
+      ]
+    },
+    {
+      "slug": "cuenta-miahorro",
+      "shortDescription": "Tu cuenta de ahorro para todo lo que necesités, sin montos mínimos para abrir la cuenta y sin cobros. Únicamente presentas tu cédula de identidad. Con MiAhorro tenés la oportunidad de ahorrar, pagar y realizar todas tus gestiones de mane…",
+      "description": "Tu cuenta de ahorro para todo lo que necesités, sin montos mínimos para abrir la cuenta y sin cobros. Únicamente presentas tu cédula de identidad. Con MiAhorro tenés la oportunidad de ahorrar, pagar y realizar todas tus gestiones de manera fácil, rápida y sin costo.\n\nBeneficios:",
+      "features": [
+        "Abrí tu cuenta fácil y rápido presentando únicamente tu documento de identidad.",
+        "Sin montos mínimos para apertura.",
+        "Tasa de interés competitiva.",
+        "Tarjeta de débito Visa Internacional.",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7.",
+        "Depósitos y retiros a través de nuestras Áreas 24/7 y sucursales."
+      ]
+    },
+    {
+      "slug": "cuenta-ahorro-tradicional",
+      "shortDescription": "Nuestra Cuenta de Ahorro Tradicional es un producto orientado a personas naturales y personas jurídicas que ofrece la forma más sencilla y cómoda de ahorrar y generar intereses. Además, permite realizar retiros de efectivo en cualquiera …",
+      "description": "Nuestra Cuenta de Ahorro Tradicional es un producto orientado a personas naturales y personas jurídicas que ofrece la forma más sencilla y cómoda de ahorrar y generar intereses. Además, permite realizar retiros de efectivo en cualquiera de nuestra red de cajeros automáticos dentro del país.\n\nRequisitos Generales\n\nBeneficios:",
+      "features": [
+        "Documento de identidad vigente",
+        "(2) referencias personales",
+        "Soporte de ingresos",
+        "Depósito inicial",
+        "Tarjeta de débito VISA internacional.",
+        "Acceso a nuestras plataformas electrónicas: e-banking, Avanz Móvil, Avanz Token y Áreas 24/7."
+      ]
+    },
+    {
+      "slug": "credito-autoavanz",
+      "shortDescription": "¡Si podés imaginarlo, nosotros podemos financiarlo! Elegí tu carro ideal, financialo con nosotros y conducilo hacia donde querrás. Ponemos a tu disposición asesoramiento personalizado, para que tu trámite sea ágil y sencillo.",
+      "description": "¡Si podés imaginarlo, nosotros podemos financiarlo! Elegí tu carro ideal, financialo con nosotros y conducilo hacia donde querrás. Ponemos a tu disposición asesoramiento personalizado, para que tu trámite sea ágil y sencillo.\n\n¿Estás listo para conducir tu carro nuevo? Solicitalo\n\naquí.\n\nPara conocer más acerca de los beneficios que te ofrecemos, hace click\n\naquí.\n\nRequisitos Generales\n\nPreguntas frecuentes para Crédito de Vehículo.\n\nTarifario para Créditos Particulares.\n\nSolicitud de créditos en línea.",
+      "features": [
+        "Documento de identidad vigente",
+        "Contar con buen récord crediticio",
+        "Contar con el monto de la prima",
+        "Antigüedad laboral mayor o igual a 12 meses",
+        "Constancia salarial",
+        "Fotocopia colilla de INSS y/o comprobante de pago (3 últimos meses)"
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Escuchamos%20tus%20proyectos/Tu%20carro.jpg",
+      "imageFile": "real-credito-autoavanz.jpg"
+    },
+    {
+      "slug": "credito-de-vivienda",
+      "shortDescription": "Te financiamos la casa de tus sueños para que la construyás como querrás, la comprés cuando querrás o la remodelés como querrás. Te ofrecemos diferentes plazos, tasas competitivas y cuotas adecuadas a tus ingresos.",
+      "description": "Te financiamos la casa de tus sueños para que la construyás como querrás, la comprés cuando querrás o la remodelés como querrás. Te ofrecemos diferentes plazos, tasas competitivas y cuotas adecuadas a tus ingresos.\n\nTe asesoramos para que tu trámite sea ágil y sencillo.\n\nRequisitos Generales\n\nGuía práctica para cálculo de intereses y gastos en operaciones crediticias\n\nPreguntas Frecuentes - Crédito de Vivienda\n\nTarifario de Créditos para clientes particulares\n\nSolicitud para créditos en línea\n\nProceso para solicitar Escritura de Cancelación de Hipoteca",
+      "features": [
+        "Documento de identidad",
+        "Fianza Solidaria",
+        "Estabilidad laboral mínimo de 1 año",
+        "Soporte de ingresos"
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Escuchamos%20tus%20proyectos/Tu%20Casa.jpg",
+      "imageFile": "real-credito-de-vivienda.jpg"
+    },
+    {
+      "slug": "credito-personal",
+      "shortDescription": "Si querés condiciones preferenciales y tenés ahorros o inversiones con nosotros, te ofrecemos un back to back, con cuotas mensuales o al vencimiento, ¡vos decidís",
+      "description": "Si querés condiciones preferenciales y tenés ahorros o inversiones con nosotros, te ofrecemos un back to back, con cuotas mensuales o al vencimiento, ¡vos decidís\n\nRequisitos Generales\n\nPreguntas Frecuentes Para Crédito Personal.",
+      "features": [
+        "Documento de identidad vigente",
+        "Estabilidad laboral mínimo de 1 año",
+        "Mínimo para solicitar un crédito personal es un monto igual o mayor a US$ 1,000 dólares (Mil dólares)",
+        "Guía práctica para cálculo de intereses y gastos en operaciones crediticias.",
+        "Tarifario para Créditos particulares.",
+        "Solicitud de crédito en línea.",
+        "Proceso para solicitar Escritura de Cancelación de Hipoteca"
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Tenemos%20lo%20que%20necesitas/Tus%20Metas.jpg",
+      "imageFile": "real-credito-personal.jpg"
+    },
+    {
+      "slug": "credito-agropecuario",
+      "shortDescription": "Con el propósito de apoyar tu actividad y brindar el financiamiento necesario para que logres incrementar tu productividad, AVANZ ajusta el pago de cuotas al ciclo de producción de tu rubro.",
+      "description": "Con el propósito de apoyar tu actividad y brindar el financiamiento necesario para que logres incrementar tu productividad, AVANZ ajusta el pago de cuotas al ciclo de producción de tu rubro.\n\nSolicitá tu crédito\n\naquí.\n\nFinanciamos:\n\nCapital de Trabajo:\n\nCapital de Inversión:\n\nBeneficios:\n\nRequisitos Generales:\n\nGuía práctica para cálculo de intereses y gastos en operaciones crediticias\n\nPreguntas Frecuentes Crédito Agropecuario\n\nProceso para solicitar Escritura de Cancelación de Hipoteca",
+      "features": [
+        "Compra de semillas y agroquímicos.",
+        "Compra de ganado de engorde y novillos.",
+        "Compra de alimentos para ganado.",
+        "Compra de maquinaria agrícola.",
+        "Compra de animales y reproductores.",
+        "Compra de terrenos y todo tipo de infraestructura productiva.",
+        "Asesoramiento personalizado.",
+        "Trámite sencillo y rápido.",
+        "Disponibilidad de fondos de forma revolvente.",
+        "Competitivas tasas de interés.",
+        "Plazos según el destino del crédito.",
+        "Cuotas de acuerdo al flujo de efectivo de su negocio.",
+        "Plan de pagos de acuerdo al ciclo de producción y comercialización.",
+        "Condiciones especiales para clientes integrales.",
+        "Documento de identidad vigente",
+        "Buen récord crediticio",
+        "Contar con una experiencia mínima de 3 ciclos o 18 meses de producción en cualquiera de las actividades agrícolas",
+        "Soporte de ingresos y compras",
+        "Soporte de propiedad de inmuebles, vehículos y/o maquinarias",
+        "Facilitar garantía (según el monto de la exposición crediticia)"
+      ]
+    },
+    {
+      "slug": "credito-empresarial",
+      "shortDescription": "Está diseñado exclusivamente para hacer crecer tu negocio. Te financiamos todas tus necesidades en los sectores agrícola, ganadero, producción, industria, servicio, comercio y construcción.",
+      "description": "Está diseñado exclusivamente para hacer crecer tu negocio. Te financiamos todas tus necesidades en los sectores agrícola, ganadero, producción, industria, servicio, comercio y construcción.\n\nSolicitá tu crédito aquí.\n\nBeneficios:\n\nRequisitos Generales:\n\nLa cual podrá ser:\n\n* Para empresas con contabilidad formal se solicitará información adicional.\n\nContrato de Mutuo con Garantía Mobiliaria y Fianza Solidaria Tasa Fija.\n\nContrato de Mutuo con Garantía Mobiliaria y Fianza Solidaria Tasa Variable.\n\nTarifario de Crédito Empresarial.\n\nProceso para solicitar Escritura de Cancelación de Hipoteca",
+      "features": [
+        "Asesoramiento personalizado.",
+        "Trámite sencillo y rápido.",
+        "Competitivas tasas de interés.",
+        "Plazos según el destino del crédito.",
+        "Cuotas de acuerdo al flujo de efectivo de su negocio.",
+        "Plan de pagos de acuerdo al ciclo de producción y comercialización.",
+        "Condiciones especiales para clientes con excelente historial de crédito.",
+        "Documento de identidad vigente.",
+        "Contar con un buen récord crediticio.",
+        "Completar solicitud de crédito.",
+        "Contar con un año de experiencia en la actividad a financiar.",
+        "Brindar información financiera.",
+        "Facilitar garantía (según el monto de la exposición crediticia).",
+        "Hipoteca.",
+        "Inventario.",
+        "Prenda comercial, agraria o industrial.",
+        "Fianza Solidaria.",
+        "Depósitos a Plazo Fijo.",
+        "Guía práctica para cálculo de intereses y gastos en operaciones crediticias."
+      ]
+    },
+    {
+      "slug": "linea-de-credito-empresarial",
+      "shortDescription": "AVANZ pone a tu disposición la Línea de Crédito Empresarial, un producto versátil que te permite invertir en múltiples destinos como: compra de inventarios, infraestructura, pago de salarios, pagos a proveedores y cualquier otra inversió…",
+      "description": "AVANZ pone a tu disposición la Línea de Crédito Empresarial, un producto versátil que te permite invertir en múltiples destinos como: compra de inventarios, infraestructura, pago de salarios, pagos a proveedores y cualquier otra inversión que te impulse a crecer.\n\nSolicitá tu crédito\n\naquí.\n\nBeneficios:\n\nRequisitos Generales:\n\nGuía práctica para cálculo de intereses y gastos en operaciones crediticias.\n\nContrato de Línea de Crédito, Hipoteca y Fianza Solidaria.\n\nContrato de Línea de Crédito Revolvente con Garantía Mobiliaria y Fianza Solidaria\n\nEscritura de Línea de Crédito Empresarial e Hipoteca\n\nTarifario de Crédito Empresarial.\n\nProceso para solicitar Escritura de Cancelación de Hipoteca",
+      "features": [
+        "Haz uso de tus fondos de forma inmediata.",
+        "Trámite sencillo y rápido.",
+        "Disponibilidad de fondos de forma revolvente.",
+        "Competitivas tasas de interés.",
+        "Amplio plazo de vigencia de hasta 120 meses.",
+        "Cuotas de acuerdo al flujo de efectivo de su negocio.",
+        "Plan de pagos de acuerdo al ciclo de producción y comercialización.",
+        "Condiciones especiales para clientes integrales.",
+        "Documento de identidad vigente.",
+        "Contar con un buen récord crediticio.",
+        "Contar con un año de experiencia en la actividad a financiar.",
+        "Brindar información financiera actualizada.",
+        "Completar solicitud de crédito.",
+        "Facilitar garantía (según el monto de la exposición crediticia). La cual podrá ser:",
+        "Hipoteca.",
+        "Inventario.",
+        "Prenda comercial, agraria o industrial.",
+        "Fianza solidaria.",
+        "Depósitos a Plazo Fijo."
+      ]
+    },
+    {
+      "slug": "cuenta-corriente-empresarial",
+      "shortDescription": "Diseñada eficientemente para que en un solo producto, consolides todas tus gestiones y goces de máximos beneficios. Con nuestra Cuenta Corriente Empresarial los saldos que manejes en tu cuenta, también generan intereses cada mes.",
+      "description": "Diseñada eficientemente para que en un solo producto, consolides todas tus gestiones y goces de máximos beneficios. Con nuestra Cuenta Corriente Empresarial los saldos que manejes en tu cuenta, también generan intereses cada mes.\n\nSolicitá la cuenta aquí.\n\nBeneficios:\n\nRequisitos Generales\n\nPreguntas y Respuestas Código IBAN.\n\nTabla de Mínimos y Comisiones - Cuenta Corriente.\n\nPreguntas Frecuentes Cuentas Bancarias.\n\nGuía para el cálculo de intereses.\n\nPreguntas frecuentes sobre el Truncamiento de Cheques en Nicaragua.",
+      "features": [
+        "Servicio de pago de planilla.",
+        "Servicio de traslado de valores.",
+        "Disponible en córdobas y en dólares.",
+        "Atractiva tasa de interés escalonada.",
+        "Capitalización de intereses mensual.",
+        "Sin límite de cheques, ni retiros, ni depósitos.",
+        "Acceso gratuito a nuestro servicio de e-banking a través del cual puedes realizas consulta de saldo, pagos a proveedores locales e internacionales, estados de cuenta, etc",
+        "Documento de Identidad Vigente",
+        "Dos (2) Referencias Personales",
+        "Soporte de ingresos",
+        "Contrato de depósito a la vista y sus servicios relacionados."
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Empresas/cuentacorrienteempresarial_550_367.jpg",
+      "imageFile": "real-cuenta-corriente-empresarial.jpg"
+    },
+    {
+      "slug": "garantias-bancarias",
+      "shortDescription": "Es una operación crediticia mediante la cual el AVANZ emite un documento a favor de un tercero avalando el cumplimiento de obligaciones contractuales que nuestro cliente posea con el beneficiario de la garantía.",
+      "description": "Es una operación crediticia mediante la cual el AVANZ emite un documento a favor de un tercero avalando el cumplimiento de obligaciones contractuales que nuestro cliente posea con el beneficiario de la garantía.\n\nAvanz te ofrece dicho servicio bajo cuatros diferentes modalidades:\n\nCaracterísticas\n\nRequisitos Generales:\n\nEn el caso de personas jurídicas, se deberá presentar documentación conforme requisitos legales.",
+      "features": [
+        "Garantías de Pago: Cubren las obligaciones del comprador de pagar el precio contratado, establecidas por el valor equivalente de la mercancía o de los servicios que se han recibido.",
+        "Garantías de Pago Anticipado: Garantizan que se devolverán los pagos anticipados al beneficiario si el cliente del AVANZ no cumple sus obligaciones contractuales.",
+        "Garantías de Cumplimiento: Garantizan el cumplimiento de las obligaciones contractuales entre el beneficiario y el cliente de AVANZ. Por lo cual AVANZ paga el monto establecido si el cliente no cumple con el contrato.",
+        "Garantía de Mantenimiento de Oferta: Garantiza que el cliente de Avanz firmará el contrato y/o no se retirará de, o modificará la oferta, y/o seguirá aportando las garantías necesarias para la firma del acuerdo.",
+        "Orientado a personas naturales y personas jurídicas, públicas o privadas.",
+        "Disponibles en córdobas y en dólares.",
+        "Trámite sencillo y rápido.",
+        "Sin cobro de intereses. El cliente sólo paga una comisión por la emisión de dicha garantía.",
+        "Montos desde USD 5,000.",
+        "Disponibles en distintas modalidades.",
+        "Respaldadas por línea de Crédito o Depósito a Plazo Fijo.",
+        "Asesoría financiera personalizada.",
+        "Documento de identidad vigente.",
+        "Contar con un buen récord crediticio.",
+        "Presentar carta de solicitud especificando el tipo de garantía, monto, plazo, beneficiario y respaldo de la misma.",
+        "Presentar pliego de base de la licitación, incluyendo formato de garantía (si aplica).",
+        "Fotocopia de RUC o Cédula de Identidad del beneficiario de la garantía."
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Empresas/Cuenta%20corriente%20BE.jpg",
+      "imageFile": "real-garantias-bancarias.jpg"
+    },
+    {
+      "slug": "mesa-de-cambio",
+      "shortDescription": "Aprovecha nuestra TASA DE CAMBIO PREFERENCIAL y rentabiliza tus ingresos.",
+      "description": "Aprovecha nuestra TASA DE CAMBIO PREFERENCIAL y rentabiliza tus ingresos.\n\nComo cliente AVANZ si vendes o compras dólares desde AVANZ móvil, e-banking o usas nuestros ATMS obtenés un tipo de cambio preferencial..",
+      "features": []
+    },
+    {
+      "slug": "pago-de-planilla",
+      "shortDescription": "El servicio de Pago de Planilla te permite realizar el pago de salario de tus colaboradores de una forma",
+      "description": "El servicio de Pago de Planilla te permite realizar el pago de salario de tus colaboradores de una forma\n\ncómoda, segura y ágil a través de e-banking.\n\nBeneficios para el empleador:\n\nde la empresa.\n\nBeneficios para el colaborador:\n\nRequisitos Generales:\n\nPara Empleador:\n\ncolaboradores a los que se acreditará el depósito.\n\nPara Colaborador:\n\nContrato\n\nde Pago de Planillas.",
+      "features": [
+        "Disminución de riesgo en el manejo de efectivo.",
+        "Contribuye a la bancarización de sus colaboradores.",
+        "Fácil acceso y sencillo proceso de pago desde e-banking.",
+        "Administración más eficiente del tiempo, del recurso humano, de las cuentas operativas y de la liquidez",
+        "Control de sus finanzas.",
+        "Acceso a una cuenta bancaria.",
+        "Acceso a todas las zonas de autoservicio 24/7.",
+        "Incluye una tarjeta de débito VISA Internacional de cortesía.",
+        "Acceso a e-banking, transferencias y otros servicios financieros de AVANZ.",
+        "Poseer cuenta bancaria activa en AVANZ.",
+        "La moneda de la cuenta ordenante –empleador- debe corresponder con la moneda de la cuenta de los",
+        "Suministrar información de cada uno de sus empleados para abrir cuentas.",
+        "Poseer cuenta bancaria en AVANZ.",
+        "Documento de identidad vigente.",
+        "Completar el formato Perfil de Cliente.",
+        "Dos (2) referencias personales."
+      ]
+    },
+    {
+      "slug": "pago-de-servicios-e-impuestos",
+      "shortDescription": "Pago de Servicios, Impuestos y recarga de tiempo aire",
+      "description": "Pago de Servicios, Impuestos y recarga de tiempo aire\n\n¡Evitá filas! Realizá fácilmente el pago de tus servicios de agua, luz, teléfono fijo y móvil, cable e impuestos a través de nuestros canales electrónicos y digitales, de manera fácil, rápida y segura.\n\nRealiza tus pagos desde los siguientes medios:\n\nPreguntas Frecuentes - Cuentas Bancarias.",
+      "features": [
+        "AVANZ Móvil.",
+        "e-banking.",
+        "Kioscos.",
+        "Débito automático a cuenta.",
+        "Ventanilla."
+      ]
+    },
+    {
+      "slug": "codigo-avanz",
+      "shortDescription": "Pensando en tu comodidad, ponemos a tu disposición Código Avanz, en donde encontrarás Código para Depósito, T-Envío y T-Envío Business. ¡Realiza tus depósitos y retiros sin tarjeta de débito, sin filas, sin complicaciones y completamente…",
+      "description": "Pensando en tu comodidad, ponemos a tu disposición Código Avanz, en donde encontrarás Código para Depósito, T-Envío y T-Envío Business. ¡Realiza tus depósitos y retiros sin tarjeta de débito, sin filas, sin complicaciones y completamente GRATIS!\n\nUsa tu Código para Depósito y T-Envío en los ATM ubicados en nuestras áreas de autoservicio, disponibles las 24 horas del día, los 7 días de la semana. Si aún no sos cliente, abrí tu cuenta ahora para gozar de este y otros beneficios de ser AVANZ.\n\nSolicitá tu cuenta haciendo click\n\naquí.\n\nT-Envío Business\n\nT-Envío\n\nCódigo para Depósito\n\nComercios disponibles.\n\nCajeros Automáticos Avanz.",
+      "features": []
+    },
+    {
+      "slug": "tarjeta-de-credito-clasica",
+      "shortDescription": "Con nosotros...",
+      "description": "Con nosotros...\n\n¡Tus hábitos te recompensan!\n\n¡Tus hábitos te recompensan!\n\nPodes hacer efectiva tu recompensa depositándola a tus Cuentas o pagar tus saldos de Tarjetas de Crédito en los siguientes canales:\n\nContrato de Tarjeta de Crédito.\n\nTabla de costos\n\nGuía para el cálculo de intereses en Tarjeta de Crédito.\n\nPreguntas Frecuentes.\n\nGuía de Usuario de E-Banking.\n\nSeguros relacionados a Tarjeta de Crédito.\n\nRequisitos para aplicar a una tarjeta de crédito Avanz.\n\nBeneficios y puntos de pagos de tu Tarjeta de Crédito.\n\nElige tu recompensa...\n\nPuntos\n\nCash Back\n\nTasa Preferencial\n\nRecompensa\n\n1.25 puntos por cada dólar de compra en todos los comercios\n\n1% Cash Back por cada dólar de compra en todos los comercios y por cada dólar pagado a tu tarjeta\n\nN/A\n\n2.5 puntos por cada dólar de compra en comercios seleccionados por vos\n\n2% Cash Back por cada dólar de compra en comercios seleccionados por vos\n\nN/A\n\nElige tu recompensa...\n\nPuntos\n\nRecompensa en todos los Comercios\n\n1.25 puntos por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n2.5 puntos por cada dólar de compra\n\nCashBack\n\nRecompensa en todos los Comercios\n\n1% CashBack por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n2% CashBack por cada dólar de compra\n\nRegalo de bienvenida\n\n2% CashBack (la primer compra en los primeros 60d, max USD 25)\n\nTasa Preferencial\n\nRecompensa en todos los Comercios\n\nN/A\n\nRecompensa en Comercios elegidos por vos\n\nN/A\n\nConoce más...\n\nReglamento Programa Puntos\n\nReglamento Programa Cash Back",
+      "features": [
+        "Acumulá beneficios en todas tus compras del mes.",
+        "Elegí acumular doble beneficio en los comercios donde realizás tus compras mensuales habituales, podes combinar hasta dos categorías de comercios.",
+        "Desde Avanz App de forma fácil y rápida.",
+        "Llama a nuestra sucursal telefónica 2223-7676 opción 4.",
+        "En nuestros cajeros automáticos Avanz."
+      ]
+    },
+    {
+      "slug": "tarjeta-de-credito-gold",
+      "shortDescription": "Con nosotros...",
+      "description": "Con nosotros...\n\n¡Tus hábitos te recompensan!\n\n¡Tus hábitos te recompensan!\n\nPodes hacer efectiva tu recompensa depositándola a tus Cuentas o pagar tus saldos de Tarjetas de Crédito en los siguientes canales:\n\nContrato de Tarjeta de Crédito.\n\nTabla de costos\n\nGuía para el cálculo de intereses en Tarjeta de Crédito.\n\nPreguntas Frecuentes.\n\nGuía de Usuario de E-Banking.\n\nSeguros relacionados a Tarjeta de Crédito.\n\nRequisitos para aplicar a una tarjeta de crédito Avanz.\n\nBeneficios y puntos de pagos de tu Tarjeta de Crédito.\n\nConoce más...\n\nReglamento Programa Puntos\n\nReglamento Programa Cash Back\n\nElige tu recompensa...\n\nPuntos\n\nCash Back\n\nTasa Preferencial\n\nTasa de interés\n\n50.00% - 25.00%\n\n50.00% - 25.00%\n\n46.00% - 2300%\n\nRecompensa en comercios elegidos por vos\n\n2.5 puntos\n\npor cada dólar de compra\n\n2% Cash Back\n\npor cada dólar de compra\n\nN/A\n\nRecompensa en otros comercios\n\n1.25 puntos\n\npor cada dólar de compra\n\n1% Cash Back\n\npor cada dólar de compra\n\nN/A\n\nElige tu recompensa...\n\nPuntos\n\nRecompensa en todos los Comercios\n\n1.25 puntos por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n2.5 puntos por cada dólar de compra\n\nCashBack\n\nRecompensa en todos los Comercios\n\n1% CashBack por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n2% CashBack por cada dólar de compra\n\nRegalo de bienvenida\n\n2% CashBack (la primer compra en los primeros 60d, max USD 25)\n\nTasa Preferencial\n\nRecompensa en todos los Comercios\n\nN/A\n\nRecompensa en Comercios elegidos por vos\n\nN/A",
+      "features": [
+        "Acumulá beneficios en todas tus compras del mes.",
+        "Elegí acumular doble beneficio en los comercios donde realizás tus compras mensuales habituales, podes combinar hasta dos categorías de comercios.",
+        "Desde Avanz App de forma fácil y rápida.",
+        "Llama a nuestra sucursal telefónica 2223-7676 opción 4.",
+        "En nuestros cajeros automáticos Avanz."
+      ]
+    },
+    {
+      "slug": "tarjeta-de-credito-signature",
+      "shortDescription": "Con nosotros...",
+      "description": "Con nosotros...\n\n¡Tus hábitos te recompensan!\n\n¡Canjea tu recompensa en efectivo!\n\nPodes hacer efectiva tu recompensa depositándola a tus Cuentas o pagar tus saldos de Tarjetas de Crédito en los siguientes canales:\n\nContrato de Tarjeta de Crédito.\n\nTabla de costos.\n\nPrograma PriorityPass\n\nGuía para el cálculo de intereses en Tarjeta de Crédito.\n\nPreguntas Frecuentes.\n\nGuía de Usuario de E-Banking.\n\nSeguros relacionados a Tarjeta de Crédito.\n\nRequisitos para aplicar a una tarjeta de crédito Avanz.\n\nBeneficios y puntos de pagos de tu Tarjeta de Crédito.\n\nElige tu recompensa...\n\nPuntos\n\nCash Back\n\nTasa Preferencial\n\nRecompensa 1.50 puntos por cada dólar de compra en todos los comercios\n\n1% Cash Back por cada dólar de compra en todos los comercios y por cada dólar pagado a tu tarjeta\n\nN/A\n\n3 puntos por cada dólar de compra en comercios seleccionados por vos\n\n2% Cash Back por cada dólar de compra en comercios seleccionados por vos\n\nN/A\n\nElige tu recompensa...\n\nPuntos\n\nRecompensa en todos los Comercios\n\n1.50 puntos por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n3 puntos por cada dólar de compra\n\nCashBack\n\nRecompensa en todos los Comercios\n\n1% CashBack por cada dólar de compra\n\nRecompensa en Comercios elegidos por vos\n\n2% CashBack por cada dólar de compra\n\nRegalo de bienvenida\n\n4% CashBack (la primer compra en los primeros 60d, max USD 50)\n\nTasa Preferencial\n\nRecompensa en todos los Comercios\n\nN/A\n\nRecompensa en Comercios elegidos por vos\n\nN/A\n\nConoce más...\n\nReglamento Programa Puntos\n\nReglamento Programa Cash Back",
+      "features": [
+        "Acumulá beneficios en todas tus compras del mes.",
+        "Elegí acumular doble beneficio en los comercios donde realizás tus compras mensuales habituales, podes combinar hasta dos categorías de comercios.",
+        "Desde Avanz App de forma fácil y rápida.",
+        "Llama a nuestra sucursal telefónica 2223-7676 opción 4.",
+        "En nuestros cajeros automáticos Avanz."
+      ]
+    },
+    {
+      "slug": "tarjeta-de-debito",
+      "shortDescription": "Dispone de los fondos de tu cuenta bancaria en todo momento a través de la Tarjeta de Débito AVANZ",
+      "description": "Dispone de los fondos de tu cuenta bancaria en todo momento a través de la Tarjeta de Débito AVANZ\n\nObtienes mayor seguridad al no portar dinero y disponibilidad de tu efectivo 24 horas los 365 días del año. Nuestra tarjeta de débito cuenta con un chip inteligente que respalda tu información personal y la de tu cuenta haciendo de ésta un medio de pago seguro.\n\nBeneficios:\n\nTarjeta de Débito Multicuentas:\n\nCon el nuevo servicio Multicuentas puedes asociar tus cuentas de Ahorro y Corrientes a una sola Tarjeta de Débito.\n\nBeneficios:\n\nRequisitos Generales\n\nPreguntas Frecuentes - Servicios Financieros.\n\nContrato de Tarjeta de Débito.\n\nTarifas de Servicios.\n\nSeguros relacionados a tu Tarjeta de débito.\n\nGuía de Usuario de E-Banking.",
+      "features": [
+        "Asociada a una cuenta bancaria, ya sea corriente o de ahorro.",
+        "Retirar efectivo las 24 horas del día, los 365 días del año.",
+        "Acceso a ATMs a nivel nacional e internacional.",
+        "Comprar y pagar por teléfono e Internet (en cualquier moneda).",
+        "Realizar pagos y compras a través POS de comercios afiliados sin intereses ni comisiones.",
+        "Solicitar tarjetas de débito adicionales, asignándoles el límite de consumo que tú decidas.",
+        "Acceso a e-banking.",
+        "Consulta de saldo desde cualquiera de nuestros cajeros automáticos.",
+        "Relaciona hasta 6 cuentas (Ahorro y/o Corrientes) a una sola Tarjeta de Débito.",
+        "Retiro de efectivo en el ATMs  a través de tu Tarjeta de Débito.",
+        "Acceso a tu efectivo 24/7.",
+        "Seguridad y comodidad en el manejo de tus depósitos.",
+        "Tener como mínimo 2 cuentas activas en AVANZ."
+      ]
+    },
+    {
+      "slug": "tarjeta-de-credito-business",
+      "shortDescription": "Descubre una manera inteligente de financiar tu negocio con nuestra Tarjeta Business",
+      "description": "Descubre una manera inteligente de financiar tu negocio con nuestra Tarjeta Business\n\nSeguros relacionados a Tarjeta de Crédito.\n\nContrato de Tarjeta de Crédito.\n\nTabla de Costos.\n\nGuía para el cálculo de intereses en Tarjeta de Crédito.\n\nGuía de Usuario de E-Banking.\n\nRequisitos para solicitud de Tarjeta de Crédito Empresarial\n\nBeneficios\n\n*al pagar sus boletos de viaje con su Tarjeta de Crédito Business AVANZ.\n\nOtros Beneficios",
+      "features": [
+        "Seguro de Vida Saldo Deudor (SVSD).",
+        "Seguro de protección de robo y fraude (PRF).",
+        "Disponibilidad de retiro de efectivo desde ATM.",
+        "Servicio de emergencia médica internacional hasta por USD 5,000*.",
+        "Notificaciones por SMS.",
+        "Adicionales con límites de crédito diferenciados.",
+        "Anualidad gratis durante el primer año para titular y adicionales."
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/tarjetas/business/avanz-business.png",
+      "imageFile": "real-tarjeta-de-credito-business.png"
+    },
+    {
+      "slug": "seguro-vida-saldo-deudor",
+      "shortDescription": "Porque vos nos importás y sabemos que la tranquilidad de tu familia es tu prioridad, te ofrecemos en alianza con Seguros América:",
+      "description": "Porque vos nos importás y sabemos que la tranquilidad de tu familia es tu prioridad, te ofrecemos en alianza con Seguros América:\n\nSeguro de Vida sobre tu Saldo Deudor (SVSD) que cubre el saldo total adeudado de tu crédito o de tu tarjeta de crédito. En caso de fallecimiento, cubre el saldo total adeudado de tu crédito y hasta por un máximo de USD30,000 en tu tarjeta de crédito.\n\nUn Seguro de Protección Contra Robo y Fraude (PRF) que te cubre cualquier cargo no autorizado en caso de fraude, robo, extravío o falsificación de tu tarjeta de crédito o débito.\n\nReportá de inmediato (máximo 24 horas) cualquier pérdida, robo, extravío o falsificación de tu tarjeta llamando al 2223-7676.\n\nAsistenciaAvanz\n\nCon Asistencia Avanz, desarrollamos soluciones que te acompañan y te respaldan justo cuando más lo necesitás.\n\nAsistencia Básica Avanz: por USD 5.00 + IVA mensuales obtenés cobertura en:\n\nAsistencias adicionales: desde USD 0.50 / USD 0.65 mensuales + IVA, podés ampliar tu cobertura con:\n\nProtegé lo que más te importa con Asistencia Avanz, afíliate llamando al +505 7513-4793. *Este servicio es una alianza entre IGS y Banco Avanz\n\nCondiciones generales del Seguro PRF.\n\nTabla de Cobertura y Sumas Aseguradas.\n\nFormato de Reclamo de Tarjeta Avanz.\n\nReglamento Seguro PRF para Tarjeta de Débito Avanz.\n\nPreguntas frecuentes Seguro PRF para Tarjeta de Crédito o Débito.\n\nCondiciones y cobertura de AsistenciaAvanz\n\nGuía de preguntas frecuentes AsistenciaAvanz",
+      "features": [
+        "Un",
+        "Asistencia para el hogar | Asistencia vial | Asistencia legal y Asistencia en el extranjero",
+        "Asistencia para mascotas | Asistencia Hogar Premium | Asistencia funeraria"
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Tenemos%20lo%20que%20necesitas/Seguros.jpg",
+      "imageFile": "real-seguro-vida-saldo-deudor.jpg"
+    }
+  ],
+  "newProducts": [
+    {
+      "slug": "credito-verde",
+      "name": "Crédito Verde",
+      "category": "credito",
+      "audience": "empresas",
+      "shortDescription": "AVANZ promueve que el desarrollo de las actividades económicas que financia sea sostenible y además responsable con el medio ambiente, por esta razón ha desarrollado un producto enfocado en las inversiones amigables con él.",
+      "description": "AVANZ promueve que el desarrollo de las actividades económicas que financia sea sostenible y además responsable con el medio ambiente, por esta razón ha desarrollado un producto enfocado en las inversiones amigables con él.\n\nSolicitá tu crédito aquí.\n\nBeneficios:\n\nRequisitos Generales:\n\nProceso para solicitar Escritura de Cancelación de Hipoteca",
+      "features": [
+        "Modernización de equipos.",
+        "Optimización de los procesos de producción.",
+        "Disminución de gastos de energía.",
+        "Reducción de impactos negativos al medio ambiente.",
+        "Asesoría técnica especializada.",
+        "Trámite sencillo y rápido.",
+        "Competitivas tasas de interés.",
+        "Cuotas de acuerdo al flujo de efectivo de su negocio.",
+        "Documento de identidad vigente.",
+        "Contar con un buen récord crediticio.",
+        "Ser propietario de un negocio.",
+        "Contar con una experiencia mínima de 1 año en dicha actividad.",
+        "Brindar información financiera.",
+        "Completar solicitud de crédito.",
+        "Facilitar garantía (según el monto de la exposición crediticia). La cual podrá ser:",
+        "Hipoteca.",
+        "Inventario.",
+        "Prenda comercial, agraria o industrial.",
+        "Fianza solidaria.",
+        "Depósitos a Plazo Fijo.",
+        "Guía práctica para cálculo de intereses y gastos en operaciones crediticias."
+      ]
+    },
+    {
+      "slug": "cuenta-de-ahorro-empresarial",
+      "name": "Cuenta de Ahorro",
+      "category": "cuenta",
+      "audience": "empresas",
+      "shortDescription": "Nuestro Plan ProAhorro te ofrece la flexibilidad de definir el plazo y el monto del depósito que deseas ahorrar mensualmente, para lograr tus proyectos y alcanzar tus objetivos.",
+      "description": "Nuestro Plan ProAhorro te ofrece la flexibilidad de definir el plazo y el monto del depósito que deseas ahorrar mensualmente, para lograr tus proyectos y alcanzar tus objetivos.\n\nEs tu programa de ahorro mensual con plazos y montos flexibles, que te permite obtener una tasa de interés atractiva sobre el monto ahorrado. Vos escogés el plazo según tu meta y nosotros premiamos tu perseverancia.\n\nMiChanchito\n\nPorque reconocemos la importancia del ahorro, te ayudamos en la educación financiera de tus hijos, fomentamos la cultura del ahorro desde temprana edad.\n\nSi aún no tenés cuenta de ahorro en AVANZ, solicitala\n\naquí\n\nPara comparar y elegir la cuenta de ahorro que más te conviene, hace click\n\naquí\n\nPreguntas Frecuentes Cuentas Bancarias.\n\nPreguntas y Respuestas Código IBAN.\n\nContrato de depósito a la vista y sus servicios relacionado.\n\nGuía para el cálculo de Interés.",
+      "features": [],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Empresas/Tus%20ahorros%20BE.jpg",
+      "imageFile": "real-cuenta-de-ahorro-empresarial.jpg"
+    }
+  ],
+  "channels": [
+    {
+      "slug": "avanz-movil",
+      "description": "Ponemos el banco en tus manos para que realices tus transacciones sin complicaciones, ni restricciones de horario. Con un solo clic, hacés tus pagos, enviás dinero, programás tus transferencias y agregás a tus beneficiarios, desde donde estés. ¡Así de fácil, rápido y desde la palma de tu mano! Si querés vivir esta nueva experiencia, descargá AVANZ Móvil",
+      "features": []
+    },
+    {
+      "slug": "e-banking",
+      "description": "Avanz te da la bienvenida a nuestro servicio de e-banking, a través del cual puedes realizar consultas de saldo, imprimir estados de cuenta, efectuar movimientos entre cuentas propias y transferir dinero a cuentas de otros bancos nacionales o internacionales. Nuestro servicio de e-banking incluye el uso de",
+      "features": [
+        "Mayor seguridad, accesibilidad, comodidad y rapidez.",
+        "Acceso gratuito al sistema de consultas.",
+        "Acceso al sistema las 24 horas del día los 365 días del año.",
+        "Niveles de usuarios para Personas Jurídicas."
+      ]
+    },
+    {
+      "slug": "atm",
+      "description": "A través de nuestra red de ATMs, podés retirar efectivo de tus tarjetas de débito o crédito, imprimir mini estado de cuenta de tus últimas 10 transacciones, consultar tu saldo, cambiar tu PIN y depositar o retirar dinero usando el nuevo servicio “Código T-Envío Avanz”. Para más información sobre la ubicación y horario de nuestros ATMs,",
+      "features": []
+    },
+    {
+      "slug": "red-de-sucursales",
+      "description": "Accede a nuestros productos y servicios a través de nuestra red de sucursales Avanz tiene presencia en 09 departamentos del país con una red de 12 sucursales y una oficina Matriz en Managua.",
+      "features": []
+    },
+    {
+      "slug": "sucursal-telefonica",
+      "description": "A través de nuestra sucursal telefónica, puedes realizar consultas y gestiones relacionadas a los distintos servicios financieros y canales de atención que AVANZ ha puesto a tu disposición. Mediante el Sistema de Atención Automatizada de nuestra sucursal telefónica, puedes realizar de manera rápida, las 24 horas del día, los 7 días de la semana, las siguientes gestiones:",
+      "features": [
+        "Bloqueo de tarjetas de débito o crédito, token o cuenta.",
+        "Desbloqueo de usuario de e-banking y/o PIN de tu tarjeta de débito."
+      ]
+    }
+  ],
+  "newChannels": [
+    {
+      "slug": "avanz-token",
+      "name": "Avanz Token",
+      "description": "Una aplicación que te permite realizar transacciones en ebanking o Avanz Móvil de manera fácil, rápida, y con el mayor nivel de seguridad. Avanz Token es nuestro nuevo token digital. Características:",
+      "features": [
+        "Puedes ingresar haciendo uso de su huella digital o reconocimiento facial, dependiendo de las características de su dispositivo inteligente.",
+        "Una vez configurado, funciona sin acceso a internet.",
+        "Permite configurarse en varios dispositivos y administrarlos desde cualquiera de ellos.",
+        "Disponible para personas jurídicas y naturales.",
+        "Si configura Avanz Token y posee un token físico, este será inhabilitado inmediatamente."
+      ],
+      "imageUrl": "https://www.avanzbanc.com/PublishingImages/Pensando%20en%20tu%20comodidad/Avanz%20Token.jpg",
+      "imageFile": "real-avanz-token.jpg"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Adolfo Martín McGregor Benard",
+      "role": "Director Propietario",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Silvio Federico Pellas Chamorro",
+      "role": "Director Propietario",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Ricardo Ramón Barrios Velásquez",
+      "role": "Director Propietario",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Javier José Argüello Barillas",
+      "role": "Director Suplente",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Silvio Federico Pellas Martínez",
+      "role": "Director Suplente",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Francisco David Robleto",
+      "role": "Director Propietario Independiente",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Luis Eduardo Montiel Morales",
+      "role": "Director Propietario Independiente",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "María Inés Bianco",
+      "role": "Director Suplente Independiente",
+      "group": "Junta Directiva"
+    },
+    {
+      "name": "Adolfo Martín McGregor Benard",
+      "role": "Presidente",
+      "group": "Dignatarios y Vigilante"
+    },
+    {
+      "name": "Ricardo Ramón Barrios Velásquez",
+      "role": "Vicepresidente",
+      "group": "Dignatarios y Vigilante"
+    },
+    {
+      "name": "Ana Leticia Gutiérrez Sampson",
+      "role": "Secretaria",
+      "group": "Dignatarios y Vigilante"
+    },
+    {
+      "name": "Carlos Francisco Pellas Chamorro",
+      "role": "Vicesecretario",
+      "group": "Dignatarios y Vigilante"
+    },
+    {
+      "name": "Alberto José Chamorro Holmann",
+      "role": "Vigilante",
+      "group": "Dignatarios y Vigilante"
+    },
+    {
+      "name": "Ana Celina Gallardo",
+      "role": "Gerente General",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Emilio José Stadthagen Recalde",
+      "role": "Gerente de Finanzas y Operaciones",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Loretta Margine García Campbell",
+      "role": "Gerente de Gestión de Talento",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Anallancy Lanuza Benavidez",
+      "role": "Gerente de Tecnología",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Karla Vanessa Zambrana Martínez",
+      "role": "Gerente de Banca de Consumo",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Malte Von Maravic",
+      "role": "Gerente de Banca de Empresas",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Jaime Alberto Valdivia Espinal",
+      "role": "Gerente de Crédito Empresarial",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Camilo René Fernández Gabuardi",
+      "role": "Gerente de Crédito y Cobro de Consumo",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Roberto Carlos Gómez Cuadra",
+      "role": "Gerente de Riesgo",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Rodrigo Alberto Zambrana Gutiérrez",
+      "role": "Gerente de Cumplimiento",
+      "group": "Principales Ejecutivos"
+    },
+    {
+      "name": "Virginia María Moreno Padilla",
+      "role": "Auditor Interno",
+      "group": "Principales Ejecutivos"
+    }
+  ]
+}

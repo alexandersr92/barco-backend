@@ -4,7 +4,167 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 15;
+const SEED_VERSION = 16;
+
+// Migración v16: contenido real scrapeado de avanzbanc.com
+// (scripts/real-content.json, generado por el scraper). Reemplaza los textos
+// placeholder de productos y canales conservando las fotos existentes, sube
+// foto solo a los que no tenían, crea lo que faltaba (Crédito Verde, Cuenta de
+// Ahorro empresarial, canal Avanz Token) y carga los líderes reales (Junta
+// Directiva, Dignatarios y Vigilante, Principales Ejecutivos).
+async function migrateV16(strapi: Core.Strapi) {
+  const contentPath = path.join(__dirname, '..', '..', 'scripts', 'real-content.json');
+  if (!fs.existsSync(contentPath)) {
+    strapi.log.warn('migrateV16: scripts/real-content.json no existe, se omite');
+    return;
+  }
+  const rc = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+
+  const media = await uploadAssets(
+    strapi,
+    [...rc.products, ...rc.newProducts, ...rc.newChannels]
+      .map((r: any) => r.imageFile)
+      .filter(Boolean),
+  );
+
+  // Productos existentes: texto real; foto solo si no tenía.
+  for (const p of rc.products) {
+    const existing = await strapi.documents('api::product.product').findFirst({
+      filters: { slug: p.slug },
+      populate: { photo: true },
+    });
+    if (!existing) {
+      strapi.log.warn(`migrateV16: producto "${p.slug}" no encontrado`);
+      continue;
+    }
+    const data: Record<string, unknown> = {
+      shortDescription: p.shortDescription,
+      description: p.description,
+    };
+    if (p.features?.length) data.features = p.features.map((text: string) => ({ text }));
+    if (!existing.photo && p.imageFile && media[p.imageFile])
+      data.photo = media[p.imageFile].id;
+    await strapi.documents('api::product.product').update({
+      documentId: existing.documentId,
+      data,
+      status: 'published',
+    });
+  }
+
+  // Productos nuevos.
+  for (const p of rc.newProducts) {
+    const exists = await strapi
+      .documents('api::product.product')
+      .findFirst({ filters: { slug: p.slug } });
+    if (exists) continue;
+    await strapi.documents('api::product.product').create({
+      data: {
+        name: p.name,
+        slug: p.slug,
+        category: p.category,
+        audience: p.audience,
+        shortDescription: p.shortDescription,
+        description: p.description,
+        features: (p.features ?? []).map((text: string) => ({ text })),
+        photo: p.imageFile ? media[p.imageFile]?.id : undefined,
+        order: 90,
+      },
+      status: 'published',
+    });
+  }
+
+  // Canales: texto real (conservan su imagen).
+  for (const c of rc.channels) {
+    const existing = await strapi
+      .documents('api::channel.channel')
+      .findFirst({ filters: { slug: c.slug } });
+    if (!existing) continue;
+    await strapi.documents('api::channel.channel').update({
+      documentId: existing.documentId,
+      data: {
+        description: c.description,
+        features: (c.features ?? []).map((text: string) => ({ text })),
+      },
+      status: 'published',
+    });
+  }
+  for (const c of rc.newChannels) {
+    const exists = await strapi
+      .documents('api::channel.channel')
+      .findFirst({ filters: { slug: c.slug } });
+    if (exists) continue;
+    await strapi.documents('api::channel.channel').create({
+      data: {
+        name: c.name,
+        slug: c.slug,
+        description: c.description,
+        features: (c.features ?? []).map((text: string) => ({ text })),
+        image: c.imageFile ? media[c.imageFile]?.id : undefined,
+        buttonLabel: 'Conocé más',
+        buttonUrl: '#',
+        buttonIcon: 'none',
+        order: 9,
+      },
+      status: 'published',
+    });
+  }
+
+  // Líderes reales en la página Sobre Avanz: se reemplaza solo la sección
+  // sections.leaders re-enviando la dynamic zone completa normalizada
+  // (Strapi reemplaza toda la zona en cada update).
+  const page = await strapi.documents('api::page.page').findFirst({
+    filters: { slug: 'inicio', audience: { slug: 'sobre-nosotros' } },
+    populate: {
+      sections: {
+        on: {
+          'sections.hero': { populate: '*' },
+          'sections.section-heading': { populate: '*' },
+          'sections.rich-text': { populate: '*' },
+          'sections.mission-vision': { populate: { items: true, image: true } },
+          'sections.values-grid': { populate: { items: { populate: { icon: true } }, centerImage: true } },
+          'sections.leaders': { populate: { leaders: { populate: { photo: true } } } },
+          'sections.card-grid': { populate: { cards: { populate: { image: true } } } },
+        },
+      },
+    },
+  });
+  if (page) {
+    const strip = (v: any): any => {
+      if (Array.isArray(v)) return v.map(strip);
+      if (v && typeof v === 'object') {
+        if (v.mime && v.url) return v.id; // media → id
+        const out: Record<string, any> = {};
+        for (const [k, val] of Object.entries(v)) {
+          if (['id', 'documentId', 'createdAt', 'updatedAt', 'publishedAt'].includes(k)) continue;
+          out[k] = strip(val);
+        }
+        return out;
+      }
+      return v;
+    };
+    const sections = (page as any).sections.map((s: any) => {
+      const st = strip(s);
+      st.__component = s.__component;
+      if (s.__component === 'sections.leaders') st.leaders = rc.leaders;
+      return st;
+    });
+    await strapi.documents('api::page.page').update({
+      documentId: page.documentId,
+      data: { sections },
+      status: 'published',
+    });
+  }
+
+  // Tipo de cambio real visto en el sitio.
+  const global = await strapi.documents('api::global.global').findFirst({});
+  if (global) {
+    await strapi.documents('api::global.global').update({
+      documentId: global.documentId,
+      data: { usdBuy: 36.44, usdSell: 37.17 },
+      status: 'published',
+    });
+  }
+}
 
 // Migración v15: página "Trabajá con nosotros"
 // (/sobre-nosotros/trabaja-con-nosotros), diseño 1506:27127. Hero naranja,
@@ -1275,6 +1435,12 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v15: página Trabajá con nosotros...');
     await migrateV15(strapi);
     strapi.log.info('✅ Migración v15 completada');
+  }
+
+  if (version < 16) {
+    strapi.log.info('🌱 Migración AVANZ v16: contenido real de avanzbanc.com...');
+    await migrateV16(strapi);
+    strapi.log.info('✅ Migración v16 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });
