@@ -4,7 +4,7 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 17;
+const SEED_VERSION = 18;
 
 // Migración v17: correcciones del QA. Re-sube los íconos que venían volteados
 // del export de Figma (quick-links, info-cards, canales) y las ilustraciones
@@ -1540,6 +1540,14 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v17: correcciones QA (íconos, requisitos)...');
     await migrateV17(strapi);
     strapi.log.info('✅ Migración v17 completada');
+  }
+
+  if (version < 18) {
+    // v18: producción corrió la v17 con SVGs inválidos (data-unflip sin
+    // valor). Se re-ejecuta la misma rutina con los archivos ya corregidos.
+    strapi.log.info('🌱 Migración AVANZ v18: re-subir íconos corregidos...');
+    await migrateV17(strapi);
+    strapi.log.info('✅ Migración v18 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });
