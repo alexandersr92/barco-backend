@@ -4,7 +4,100 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 16;
+const SEED_VERSION = 17;
+
+// Migración v17: correcciones del QA. Re-sube los íconos que venían volteados
+// del export de Figma (quick-links, info-cards, canales) y las ilustraciones
+// sin ratio intrínseco (tips/edu), los re-enlaza en el home, y agrega los
+// requisitos de Cuenta Naranja (faltaba la pestaña Requisitos).
+async function migrateV17(strapi: Core.Strapi) {
+  const media = await uploadAssets(strapi, [
+    'ql-icon-cuenta.svg', 'ql-icon-tarjeta.svg', 'ql-icon-credito.svg', 'ql-icon-seguro.svg',
+    'canales-icon.svg', 'info-icon-bienes.svg', 'info-icon-equipo.svg', 'info-icon-regulatoria.svg',
+    'tips-illustration.svg', 'edu-illustration.svg',
+  ]);
+
+  const page = await strapi.documents('api::page.page').findFirst({
+    filters: { slug: 'inicio', audience: { slug: 'personas' } },
+    populate: {
+      sections: {
+        on: {
+          'sections.hero': { populate: '*' },
+          'sections.product-links': { populate: { items: { populate: { icon: true } } } },
+          'sections.channels-converter': { populate: '*' },
+          'sections.section-heading': { populate: '*' },
+          'sections.feature-banner': { populate: '*' },
+          'sections.news-list': { populate: '*' },
+          'sections.info-cards': { populate: { cards: { populate: { image: true } } } },
+          'sections.app-banner': { populate: '*' },
+          'sections.channels-bar': { populate: '*' },
+          'sections.rich-text': { populate: '*' },
+        },
+      },
+    },
+  });
+  if (!page) { strapi.log.warn('migrateV17: home personas no encontrado'); return; }
+
+  const strip = (v: any): any => {
+    if (Array.isArray(v)) return v.map(strip);
+    if (v && typeof v === 'object') {
+      if (v.mime && v.url) return v.id;
+      const out: Record<string, any> = {};
+      for (const [k, val] of Object.entries(v)) {
+        if (['id', 'documentId', 'createdAt', 'updatedAt', 'publishedAt'].includes(k)) continue;
+        out[k] = strip(val);
+      }
+      return out;
+    }
+    return v;
+  };
+
+  const QL = ['ql-icon-cuenta.svg', 'ql-icon-tarjeta.svg', 'ql-icon-credito.svg', 'ql-icon-seguro.svg'];
+  const IC = ['info-icon-bienes.svg', 'info-icon-equipo.svg', 'info-icon-regulatoria.svg'];
+  const sections = (page as any).sections.map((s: any) => {
+    const st = strip(s);
+    st.__component = s.__component;
+    if (s.__component === 'sections.product-links' && st.items) {
+      st.items = st.items.map((it: any, i: number) => ({ ...it, icon: media[QL[i]]?.id ?? it.icon }));
+    }
+    if (s.__component === 'sections.channels-converter' && media['canales-icon.svg']) {
+      st.icon = media['canales-icon.svg'].id;
+    }
+    if (s.__component === 'sections.info-cards' && st.cards) {
+      st.cards = st.cards.map((c: any, i: number) => ({ ...c, image: media[IC[i]]?.id ?? c.image }));
+    }
+    if (s.__component === 'sections.feature-banner') {
+      const file = st.variant === 'teal' ? 'tips-illustration.svg' : 'edu-illustration.svg';
+      if (media[file]) st.illustration = media[file].id;
+    }
+    return st;
+  });
+  await strapi.documents('api::page.page').update({
+    documentId: page.documentId,
+    data: { sections },
+    status: 'published',
+  });
+
+  // Cuenta Naranja: requisitos (pestaña faltante según QA; contenido estándar
+  // de cuentas de ahorro del sitio actual de Avanz)
+  const naranja = await strapi.documents('api::product.product').findFirst({
+    filters: { slug: 'cuenta-naranja' },
+  });
+  if (naranja) {
+    await strapi.documents('api::product.product').update({
+      documentId: naranja.documentId,
+      data: {
+        requirements: [
+          { text: 'Documento de identidad vigente' },
+          { text: 'Dos (2) referencias personales' },
+          { text: 'Soporte de ingresos' },
+          { text: 'Depósito inicial' },
+        ],
+      },
+      status: 'published',
+    });
+  }
+}
 
 // Migración v16: contenido real scrapeado de avanzbanc.com
 // (scripts/real-content.json, generado por el scraper). Reemplaza los textos
@@ -1441,6 +1534,12 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v16: contenido real de avanzbanc.com...');
     await migrateV16(strapi);
     strapi.log.info('✅ Migración v16 completada');
+  }
+
+  if (version < 17) {
+    strapi.log.info('🌱 Migración AVANZ v17: correcciones QA (íconos, requisitos)...');
+    await migrateV17(strapi);
+    strapi.log.info('✅ Migración v17 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });
