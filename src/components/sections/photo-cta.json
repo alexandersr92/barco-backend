@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_photo_ctas",
+  "info": {
+    "displayName": "Banner foto + CTA",
+    "description": "Foto de fondo con degradado, kicker, título, texto y botón",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "kicker": { "type": "string" },
+    "heading": { "type": "string" },
+    "body": { "type": "text" },
+    "buttonLabel": { "type": "string" },
+    "buttonUrl": { "type": "string" },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
+  }
+}

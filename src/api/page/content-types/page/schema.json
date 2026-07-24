@@ -53,7 +53,8 @@
         "sections.quote-banner",
         "sections.split-text",
         "sections.media-text",
-        "sections.role-grid"
+        "sections.role-grid",
+        "sections.photo-cta"
       ]
     },
     "seo": {

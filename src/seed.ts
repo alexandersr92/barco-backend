@@ -4,7 +4,115 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 18;
+const SEED_VERSION = 19;
+
+// Migración v19: home de Empresas según diseño 1517:11121 (hero, accesos
+// rápidos, banner Línea de Crédito, showcase Tarjeta Business, tips y
+// tarjetas de servicios). Textos verbatim del diseño.
+async function migrateV19(strapi: Core.Strapi) {
+  const media = await uploadAssets(strapi, [
+    'empresas-hero.jpg', 'empresas-ql-cuenta.png', 'empresas-ql-tarjeta.png',
+    'empresas-ql-credito.png', 'empresas-credito-bg.jpg', 'empresas-tarjeta-man.jpg',
+    'empresas-visa-card.png', 'empresas-tips.png', 'empresas-pago-planilla.jpg',
+    'empresas-mesa-cambio.jpg',
+  ]);
+  const page = await strapi.documents('api::page.page').findFirst({
+    filters: { slug: 'inicio', audience: { slug: 'empresas' } },
+  });
+  if (!page) { strapi.log.warn('migrateV19: home empresas no encontrado'); return; }
+
+  await strapi.documents('api::page.page').update({
+    documentId: page.documentId,
+    data: {
+      title: 'Empresas | Banco Avanz',
+      sections: [
+        {
+          __component: 'sections.hero',
+          kicker: 'BIENVENIDO A AVANZ',
+          title: 'Tu banco fácil',
+          subtitle: 'Inspirados en la innovación\nponemos tu banco en tus manos',
+          image: media['empresas-hero.jpg']?.id,
+          buttons: [],
+        },
+        {
+          __component: 'sections.section-heading',
+          kicker: 'BIENVENIDO A AVANZ',
+          title: 'Hola, ¿Qué necesitas hacer hoy?',
+          subtitle: 'Ponemos a disposición productos y servicios a tu medida',
+          align: 'center',
+        },
+        {
+          __component: 'sections.product-links',
+          items: [
+            { prefix: 'Abrir una Cuenta', label: 'Empresarial', url: '/productos/cuenta-corriente-empresarial', icon: media['empresas-ql-cuenta.png']?.id },
+            { prefix: 'Solicitar una', label: 'tarjeta Business', url: '/productos/tarjeta-de-credito-business', icon: media['empresas-ql-tarjeta.png']?.id },
+            { prefix: 'Solicitar un Crédito', label: 'Empresarial', url: '/productos/credito-empresarial', icon: media['empresas-ql-credito.png']?.id },
+          ],
+        },
+        {
+          __component: 'sections.photo-cta',
+          kicker: 'CrÉDITOS',
+          heading: 'Línea de Crédito Empresarial',
+          body: 'Nuestra Línea de Crédito Empresarial te brinda la libertad de invertir en el crecimiento que tu negocio merece.',
+          buttonLabel: 'Solicitarlo aquí',
+          buttonUrl: '/productos/linea-de-credito-empresarial',
+          image: media['empresas-credito-bg.jpg']?.id,
+        },
+        {
+          __component: 'sections.product-showcase',
+          heading: 'Tarjeta de Crédito Business',
+          description: 'Tu tarjeta de crédito business será tu mejor aliada para vos y tu empresa, permitiendote financiar de manera fácil y rápido toda necesidad financiera, y además, con grandes beneficios.',
+          features: [
+            { text: 'Tasa de Interés preferencial.' },
+            { text: 'Estados de cuenta consolidados.' },
+            { text: 'Financiamiento de corto plazo para tu negocio.' },
+            { text: 'Obtén más beneficios Visa al viajar.' },
+            { text: 'Seguro de Vida Saldo Deudor.' },
+            { text: 'Seguros de Protección contra Fraude.' },
+          ],
+          photo: media['empresas-tarjeta-man.jpg']?.id,
+          cardImage: media['empresas-visa-card.png']?.id,
+          buttons: [
+            { label: 'Solicitala aqui', url: '/productos/tarjeta-de-credito-business', variant: 'primary' },
+            { label: 'Ver más detalles', url: '/productos/tarjeta-de-credito-business', variant: 'link' },
+          ],
+        },
+        {
+          __component: 'sections.feature-banner',
+          kicker: 'TIPS DE SEGURIDAD',
+          title: 'Tu información siempre segura',
+          description: 'Conoce nuestras recomendaciones de seguridad.',
+          buttonLabel: 'Leer más',
+          buttonUrl: '/personas/zona-digital',
+          illustration: media['empresas-tips.png']?.id,
+          variant: 'teal',
+        },
+        {
+          __component: 'sections.card-grid',
+          cards: [
+            {
+              kicker: 'OTROS SERVICIOS',
+              title: 'Pago de planilla',
+              description: 'El servicio de Pago de Planilla te permite realizar el pago de salario de tus colaboradores de una forma cómoda, segura y ágil a través de e-banking.',
+              linkLabel: 'Conocé más',
+              linkUrl: '/productos/pago-de-planilla',
+              image: media['empresas-pago-planilla.jpg']?.id,
+            },
+            {
+              kicker: 'OTROS SERVICIOS',
+              title: 'Mesa de cambio',
+              description: 'Como cliente AVANZ si vendes o compras dólares desde AVANZ móvil, e-banking o usas nuestros ATMS obtenés un tipo de cambio preferencial.',
+              linkLabel: 'Conocé más',
+              linkUrl: '/productos/mesa-de-cambio',
+              image: media['empresas-mesa-cambio.jpg']?.id,
+            },
+          ],
+        },
+      ],
+    },
+    status: 'published',
+  });
+}
 
 // Migración v17: correcciones del QA. Re-sube los íconos que venían volteados
 // del export de Figma (quick-links, info-cards, canales) y las ilustraciones
@@ -1548,6 +1656,12 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v18: re-subir íconos corregidos...');
     await migrateV17(strapi);
     strapi.log.info('✅ Migración v18 completada');
+  }
+
+  if (version < 19) {
+    strapi.log.info('🌱 Migración AVANZ v19: home de Empresas...');
+    await migrateV19(strapi);
+    strapi.log.info('✅ Migración v19 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });

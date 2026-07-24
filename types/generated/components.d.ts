@@ -367,6 +367,23 @@ export interface SectionsNewsList extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsPhotoCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_photo_ctas';
+  info: {
+    description: 'Foto de fondo con degradado, kicker, t\u00EDtulo, texto y bot\u00F3n';
+    displayName: 'Banner foto + CTA';
+    icon: 'landscape';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    buttonLabel: Schema.Attribute.String;
+    buttonUrl: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    kicker: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsPillNav extends Struct.ComponentSchema {
   collectionName: 'components_sections_pill_navs';
   info: {
@@ -613,6 +630,7 @@ declare module '@strapi/strapi' {
       'sections.media-text': SectionsMediaText;
       'sections.mission-vision': SectionsMissionVision;
       'sections.news-list': SectionsNewsList;
+      'sections.photo-cta': SectionsPhotoCta;
       'sections.pill-nav': SectionsPillNav;
       'sections.product-grid': SectionsProductGrid;
       'sections.product-links': SectionsProductLinks;

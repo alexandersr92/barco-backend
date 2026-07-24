@@ -644,6 +644,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.split-text',
         'sections.media-text',
         'sections.role-grid',
+        'sections.photo-cta',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;
