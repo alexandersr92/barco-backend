@@ -4,7 +4,7 @@ import * as path from 'path';
 
 // Seed versionado con el contenido del diseño de Figma "Avanz Website" y su sitemap.
 // v2: contenido base (solo con base vacía). v3: detalle de productos (migración in-place).
-const SEED_VERSION = 19;
+const SEED_VERSION = 20;
 
 // Migración v19: home de Empresas según diseño 1517:11121 (hero, accesos
 // rápidos, banner Línea de Crédito, showcase Tarjeta Business, tips y
@@ -1662,6 +1662,14 @@ export async function seed(strapi: Core.Strapi) {
     strapi.log.info('🌱 Migración AVANZ v19: home de Empresas...');
     await migrateV19(strapi);
     strapi.log.info('✅ Migración v19 completada');
+  }
+
+  if (version < 20) {
+    // v20: producción corrió la v19 sin las 6 fotos de Empresas (estaban en
+    // frontend/public, no en scripts/assets). Ya committeadas; se re-ejecuta.
+    strapi.log.info('🌱 Migración AVANZ v20: re-enlazar fotos de Empresas...');
+    await migrateV19(strapi);
+    strapi.log.info('✅ Migración v20 completada');
   }
 
   await store.set({ key: 'version', value: SEED_VERSION });
